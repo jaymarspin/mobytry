@@ -1,0 +1,42 @@
+.add-icon {
+  font-size: 20px;
+  margin-right: 5px;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+
+.border {
+  border: 3px #cacaca dashed;
+}
+
+div {
+  background: white;
+}
+
+h5,
+p {
+  margin-bottom: 0px;
+}
+
+ul {
+  margin: 0;
+}
+
+p,
+ul {
+  color: #868686;
+}
+
+ul {
+  margin: 0;
+}
+
+ion-item {
+  --background-hover: none;
+  --background-activated: none;
+  --ripple-color: transparent;
+}
+
+ion-checkbox {
+  position: relative;
+}

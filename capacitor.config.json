@@ -1,0 +1,13 @@
+{
+  "appId": "com.my.moby.motors.simedarby",
+  "appName": "Moby MY",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

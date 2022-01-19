@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{"SearchPage_Search"|translate}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      class="ion-margin-top"
+      debounce="500"
+      [(ngModel)]="searchInput"
+      placeholder="{{'SearchPage_Search'|translate}}"
+      (ionChange)="search()"
+      (ionClear)="search()"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ht-100">
+    <ion-row class="flex ion-margin-top white">
+      <ion-col>
+        <app-search-result [searchParam]="contact" [isKeyword]="true"></app-search-result>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

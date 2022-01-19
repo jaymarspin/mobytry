@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Moby MY</string>
+    <string name="title_activity_main">Moby MY</string>
+    <string name="package_name">com.my.moby.motors.simedarby</string>
+    <string name="custom_url_scheme">com.my.moby.motors.simedarby</string>
+    <string name="authurlscheme">com.simedarbymotors.appauth</string>
+</resources>

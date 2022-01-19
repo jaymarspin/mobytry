@@ -1,0 +1,32 @@
+.letter-scroll {
+  margin-top: 10px;
+  position: fixed;
+  z-index: 1000;
+  right: 2px;
+
+  ion-label {
+    display: block;
+    line-height: 15px;
+  }
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.row {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.name {
+  font-size: 15px;
+}
+
+.note {
+  font-size: 10px;
+}
+
+.big-icon {
+  font-size: 25px;
+}

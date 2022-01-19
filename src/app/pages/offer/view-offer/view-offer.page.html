@@ -1,0 +1,150 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="print()">
+        <ion-icon slot="icon-only" name="print"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{"ViewOfferPage_OfferDetails"|translate}}<br />
+      <ion-text class="sub-header"> {{"ViewOfferPage_OpportunityID"|translate}}: {{offer?.OpportunityId}} </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <section class="ion-text-center">
+    <h2>{{offer?.ContactName}}</h2>
+    <ion-text class="sub-title">{{offer?.SourceName}}</ion-text>
+  </section>
+  <!-- General Details -->
+  <section class="ion-margin-top">
+    <ion-text>
+      <b>{{"ViewOfferPage_GeneralDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin">
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_Status"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.Status}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_VariantName"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.VariantName}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_YearMake"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.YearMake}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_SellingPrice"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.SellingPrice | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_ExciseDuty"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.ExciseDuty | CustomCurrency}} </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
+  <!-- Discount Details -->
+  <section class="ion-margin-top">
+    <ion-text>
+      <b>{{"ViewOfferPage_DiscountDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin">
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_FleetDiscountPctg"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.FleetDiscountPctg}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_FleetDiscount"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.FleetDiscount | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_Discount"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.Discount | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_SalesCampaign"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.SalesCampaign | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_Lifestyle"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.Merchandise | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start">
+            <b>{{"ViewOfferPage_Subtotal"|translate}}:</b>
+          </ion-col>
+          <ion-col size="6" class="ion-text-start">
+            <ion-text color="primary"> {{offer?.Subtotal | CustomCurrency}} </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
+  <!-- Other Details -->
+  <section class="ion-margin-top">
+    <ion-text>
+      <b>{{"ViewOfferPage_OtherDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin">
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_RegistrationType"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.RegType}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_RegistrationFee"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.RegFee | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_HPOwnership"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.HPOwnership}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_HPOwnershipFee"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.HPOwnershipPrice | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_RoadTax"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.RoadTax | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_Insurance"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.Insurance | CustomCurrency}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start">
+            <b>{{"ViewOfferPage_TotalPrice"|translate}}:</b>
+          </ion-col>
+          <ion-col size="6" class="ion-text-start">
+            <ion-text color="primary"> {{offer?.Total | CustomCurrency}} </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewOfferPage_BookingFee"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{offer?.BookingFee | CustomCurrency}} </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
+</ion-content>
+<ion-footer class="ion-padding" *ngIf="isShowFooter(offer)">
+  <ion-grid class="ion-no-margin ion-no-padding">
+    <ion-row>
+      <ion-col>
+        <ion-button fill="solid" expand="block" color="primary" (click)="accept()"> {{ "ViewOfferPage_Accept" | translate | uppercase }} </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="outline" expand="block" color="primary" (click)="decline()"> {{ "ViewOfferPage_Decline" | translate | uppercase }} </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

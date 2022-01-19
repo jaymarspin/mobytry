@@ -1,0 +1,118 @@
+<!-- <ion-grid [ngClass]="{ transparent: showCamera }" no-padding>
+  <ion-row>
+    <ion-col no-padding>
+      <ion-toolbar *ngIf="!showCamera">
+        <ion-buttons slot="start">
+          <ion-button (click)="openScanner()" *ngIf="!showCamera">
+            <ion-icon name="md-camera" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Model Selection</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="close()">
+            <ion-icon name="close" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-progress-bar
+          type="indeterminate"
+          color="secondary"
+          *ngIf="isLoading"
+        ></ion-progress-bar>
+      </ion-toolbar>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="!showCamera">
+    <ion-col>
+      <ion-list class="selectHeader">
+        <ion-list-header color="light">Series</ion-list-header>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row
+    justify-content-center
+    align-items-center
+    *ngIf="!showCamera && (!modelList || modelList.length <= 0)"
+  >
+    <ion-col text-center>
+      <ion-spinner></ion-spinner>
+    </ion-col>
+  </ion-row>
+  <ion-row
+    justify-content-start
+    align-items-center
+    *ngIf="!showCamera && modelList?.length > 0"
+  >
+    <ion-col class="selectors">
+      <ion-chip
+        *ngFor="let series of seriesList"
+        (click)="filterModels(series)"
+        [color]="selectedSeries === series ? 'tertiary' : 'medium'"
+        outline="true"
+      >
+        <ion-icon
+          name="radio-button-off"
+          *ngIf="selectedSeries !== series"
+        ></ion-icon>
+        <ion-icon
+          name="checkmark-circle"
+          *ngIf="selectedSeries === series"
+        ></ion-icon>
+        <ion-label>
+          <strong>{{ series }}</strong>
+        </ion-label>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="!showCamera">
+    <ion-col>
+      <ion-list class="selectHeader">
+        <ion-list-header color="light">Models</ion-list-header>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="!showCamera">
+    <ion-col class="selectors">
+      <ion-list>
+        <ion-radio-group
+          (ionChange)="selectModel($event)"
+          allow-empty-selection="false"
+        >
+          <ion-item *ngFor="let m of filteredModels" lines="full">
+            <ion-label>{{ m.Short_Description__c }} ({{ m.Name }})</ion-label>
+            <ion-radio slot="start" [value]="m.Id" color="tertiary"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row
+    *ngIf="showCamera"
+    class="transparent"
+    align-items-start
+    justify-content-end
+  >
+    <ion-col size="3">
+      <ion-fab-button size="small" color="light" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-col>
+  </ion-row>
+  <ion-row
+    *ngIf="showCamera"
+    class="transparent"
+    align-items-end
+    justify-content-center
+  >
+    <ion-col size="3">
+      <ion-fab-button size="small" color="secondary" (click)="toggleLight()">
+        <ion-icon name="flash"></ion-icon>
+      </ion-fab-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-fab-button size="small" color="secondary" (click)="reverseCamera()">
+        <ion-icon name="reverse-camera"></ion-icon>
+      </ion-fab-button>
+    </ion-col>
+  </ion-row>
+</ion-grid> -->
+<ion-grid></ion-grid>

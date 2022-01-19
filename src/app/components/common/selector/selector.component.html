@@ -1,0 +1,28 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar (ionChange)="searchSelectors($event)" debounce="500" placeholder="Search" inputmode="search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-label color="primary"
+    ><b>{{ header | uppercase }}</b></ion-label
+  >
+  <ion-virtual-scroll [items]="selectorsArr">
+    <ion-item *virtualItem="let s" (click)="toggle(s)">
+      <ion-label>
+        <h5 class="no-margin-bottom">{{ s?.label }}</h5>
+      </ion-label>
+      <ion-checkbox slot="start" [checked]="isSelected(s)"></ion-checkbox>
+    </ion-item>
+  </ion-virtual-scroll>
+</ion-content>
+<ion-footer class="ion-padding" *ngIf="allowMultiple">
+  <ion-button fill="solid" expand="block" color="primary" (click)="save()">
+    {{ 'Common_Save' | translate }}
+  </ion-button>
+</ion-footer>

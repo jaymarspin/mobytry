@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="end">
+      <ion-button (click)="showFilter()">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"OpportunityTab_Opportunity"|translate}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      class="ion-margin-top"
+      search-icon=""
+      debounce="500"
+      [(ngModel)]="searchInput"
+      placeholder="{{'OpportunityTab_Search'|translate}}"
+      (ionChange)="search()"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item *ngIf="isLoadingRecent" class="ion-text-center" lines="none">
+    <ion-label class="ion-text-center">
+      <ion-spinner></ion-spinner>
+    </ion-label>
+  </ion-item>
+  <ion-grid class="ion-margin border-radius" *ngIf="opp">
+    <ion-row class="ion-margin-bottom" *ngFor="let item of opp" (click)="goToOpportunity(item)">
+      <ion-col>
+        <ion-text class="ion-margin-bottom">
+          <ion-label color="primary"><b>{{ item?.Type }}</b></ion-label
+          ><br />
+          <ion-label color="primary">{{ item?.ContactName }}</ion-label>
+        </ion-text>
+        <div class="bottom-icon">
+          <ion-icon name="flame" color="{{ getColor(item?.Warmth) }}" *ngIf="item?.Type === 'OPEN' && countryCode === 'my'"></ion-icon>
+          <ion-icon class="big-icon" name="{{ getFavIcon(item) }}" color="primary" *ngIf="countryCode === 'my'"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col class="ion-text-start">
+        <!-- <div *ngFor="let model of item?.ModelInterest">
+            <ion-label> {{ model?.label }} </ion-label>
+            <br />
+          </div> -->
+        <ion-label>{{ item?.Source }}</ion-label><br />
+        <ion-label> {{ item?.CreatedDate | date: "dd MMM y h:mm a" }} </ion-label>
+        <br />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

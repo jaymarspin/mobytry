@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"LanguagePage_Language"|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list class="ion-margin-top">
+    <ion-radio-group [(ngModel)]="prefLang">
+      <ion-item button *ngFor="let item of languages">
+        <ion-label>{{item.label}}</ion-label>
+        <ion-radio slot="end" value="{{item.label}}"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

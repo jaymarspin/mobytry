@@ -1,0 +1,222 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="reset()">
+        {{ 'OpportunityFilter_Reset' | translate }}
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'OpportunityFilter_Filter' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ng-container [formGroup]="filterForm">
+    <ion-grid class="ion-no-margin bg-white ion-padding">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>
+            {{ 'OpportunityFilter_TestDriveStatus' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center ion-padding-top">
+        <ion-col class="header-btn" (click)="updateTdStatus('all')" [class.activated]="filterObj.tdStatus === 'all'">
+          <ion-icon name="apps" [color]="filterObj.tdStatus === 'all' ? 'primary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_All' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateTdStatus('ongoing')" [class.activated]="filterObj.tdStatus === 'ongoing'">
+          <ion-icon name="play" [color]="filterObj.tdStatus === 'ongoing' ? 'primary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Ongoing' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateTdStatus('completed')" [class.activated]="filterObj.tdStatus === 'completed'">
+          <ion-icon name="checkmark" [color]="filterObj.tdStatus === 'completed' ? 'primary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Completed' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateTdStatus('upcoming')" [class.activated]="filterObj.tdStatus === 'upcoming'">
+          <ion-icon src="{{ getUpcomingIcon() }}"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Upcoming' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="ion-no-margin bg-white ion-padding ion-margin-top">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>
+            {{ 'OpportunityFilter_OpportunityStatus' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center ion-padding-top">
+        <ion-col class="header-btn" (click)="updateOppStatus('all')" [class.activated]="filterObj.oppStatus === 'all'">
+          <ion-icon name="apps" [color]="filterObj.oppStatus === 'all' ? 'primary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_All' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateOppStatus('open')" [class.activated]="filterObj.oppStatus === 'open'">
+          <ion-icon src="{{ getOpenIcon() }}"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Open' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateOppStatus('won')" [class.activated]="filterObj.oppStatus === 'won'">
+          <ion-icon name="trophy" [color]="filterObj.oppStatus === 'won' ? 'primary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Won' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateOppStatus('deferred')" [class.activated]="filterObj.oppStatus === 'deferred'">
+          <ion-icon name="timer" [color]="filterObj.oppStatus === 'deferred' ? 'primary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Deferred' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="ion-no-margin bg-white ion-padding ion-margin-top">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>
+            {{ 'OpportunityFilter_LeadStatus' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center ion-padding-top">
+        <ion-col class="header-btn" (click)="updateLeadStatus('all')" [class.activated]="filterObj.leadStatus === 'all'">
+          <ion-icon name="apps" [color]="filterObj.leadStatus === 'all' ? 'primary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_All' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateLeadStatus('hot')" [class.activated]="filterObj.leadStatus === 'hot'">
+          <ion-icon name="flame" [color]="filterObj.leadStatus === 'hot' ? 'danger' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Hot' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateLeadStatus('warm')" [class.activated]="filterObj.leadStatus === 'warm'">
+          <ion-icon name="flame" [color]="filterObj.leadStatus === 'warm' ? 'warning' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Warm' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col class="header-btn" (click)="updateLeadStatus('cold')" [class.activated]="filterObj.leadStatus === 'cold'">
+          <ion-icon name="flame" [color]="filterObj.leadStatus === 'cold' ? 'secondary' : 'medium'"></ion-icon>
+
+          <ion-label class="mat-small">
+            {{ 'OpportunityFilter_Cold' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="ion-no-margin bg-white ion-padding ion-margin-top">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>
+            {{ 'OpportunityFilter_OpportunitySource' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>
+            {{ 'OpportunityFilter_StarredOpportunity' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-select formControlName="source">
+              <ion-select-option [value]="opt.value" *ngFor="let opt of sources">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-select formControlName="starred">
+              <ion-select-option [value]="opt.value" *ngFor="let opt of starred">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="ion-no-margin bg-white ion-padding ion-margin-top">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>
+            {{ 'OpportunityFilter_StartDate' | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>
+            {{ 'OpportunityFilter_EndDate' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-datetime displayFormat="MMM DD YYYY" formControlName="startDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-datetime displayFormat="MMM DD YYYY" formControlName="endDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list class="ion-margin-top">
+      <ion-item button class="ion-padding-start">
+        <ion-label>
+          {{ 'OpportunityFilter_WithOpenBookings' | translate }}
+        </ion-label>
+        <ion-checkbox slot="start" formControlName="withOpenBookings"></ion-checkbox>
+      </ion-item>
+      <ion-item button class="ion-padding-start">
+        <ion-label>
+          {{ 'OpportunityFilter_WithPendingTasks' | translate }}
+        </ion-label>
+        <ion-checkbox slot="start" formControlName="withPendingTasks"></ion-checkbox>
+      </ion-item>
+      <ion-item button lines="none" class="ion-padding-start">
+        <ion-label>
+          {{ 'OpportunityFilter_WithScheduledAppointments' | translate }}
+        </ion-label>
+        <ion-checkbox slot="start" formControlName="withAppointment"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+</ion-content>
+<ion-footer class="ion-padding">
+  <ion-button fill="solid" expand="block" color="primary" (click)="apply()">
+    {{ 'Common_Apply' | translate }}
+  </ion-button>
+</ion-footer>

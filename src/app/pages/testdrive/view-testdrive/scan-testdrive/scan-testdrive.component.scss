@@ -1,0 +1,20 @@
+ion-content {
+  --background: var(--ion-color-content-color);
+}
+
+div {
+  background: white;
+}
+
+.sub-header {
+  font-size: 12px;
+}
+
+ion-footer {
+  background: var(--ion-color-content-color);
+}
+
+ion-item {
+  --background: rgba(118, 118, 128, 0.12);
+  border-radius: 10px;
+}

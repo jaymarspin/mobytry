@@ -1,0 +1,67 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="showFilter()">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-title>{{ "Nav_Notifications" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid class="ion-no-margin ion-no-padding">
+    <ion-row class="ion-no-margin ion-no-padding">
+      <ion-col size="12" class="ion-no-padding">
+        <ion-list class="ion-no-padding">
+          <ng-container *ngIf="thismonth && thismonth.length > 0">
+            <ion-item>
+              <ion-label>{{ "NotificationsFilter_ThisMonth" | translate }}</ion-label>
+            </ion-item>
+
+            <ion-row class="notifications ion-activatable ion-no-padding ion-padding-top ion-padding-bottom" *ngFor="let item of thismonth" (click)="todo()">
+              <ion-col size="2" class="ion-no-padding">
+                <ion-icon name="mail" color="primary"></ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <ion-text>
+                  <ion-label class="ion-text-wrap description" [innerHTML]="item.Message"></ion-label>
+                  <ion-label color="medium" [innerHTML]="item.Subtitle"></ion-label>
+                  <ion-label class="ion-padding-top" color="medium"> {{item.CreatedDate | amLocale:'en' | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}} </ion-label>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+
+          <ng-container *ngIf="earlier && earlier.length > 0">
+            <ion-item>
+              <ion-label>{{ "NotificationsFilter_Earlier" | translate }}</ion-label>
+            </ion-item>
+
+            <ion-row
+              class="notifications earlier ion-activatable ion-no-padding ion-padding-top ion-padding-bottom"
+              *ngFor="let item of earlier"
+              (click)="todo()"
+            >
+              <ion-col size="2" class="ion-no-padding">
+                <ion-icon name="mail" color="primary"></ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <ion-text>
+                  <ion-label class="ion-text-wrap description" [innerHTML]="item.Message"></ion-label>
+                  <ion-label color="medium" [innerHTML]="item.Subtitle"></ion-label>
+                  <ion-label class="ion-padding-top" color="medium"> {{item.CreatedDate | amLocale:'en' | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}} </ion-label>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

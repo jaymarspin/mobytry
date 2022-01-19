@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="next()">{{'Common_Next'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{'UpdateOwnerTradeIn_OwnerDetails'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="contactForm">
+    <div>
+      <ion-item button>
+        <ion-select formControlName="title" placeholder='{{"UpdateOwnerTradeIn_Salutation"|translate}}'>
+          <ion-select-option [value]="opt.value" *ngFor="let opt of salutationList">{{ opt.label }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.title" [messages]="formErrorMessages.title"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="fullName" placeholder='{{"UpdateOwnerTradeIn_FullName"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.fullName" [messages]="formErrorMessages.fullName"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="prefName" placeholder='{{"UpdateOwnerTradeIn_PreferredName"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.prefName" [messages]="formErrorMessages.prefName"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="company" placeholder='{{"UpdateOwnerTradeIn_Company"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.company" [messages]="formErrorMessages.company"></app-item-err>
+      <ion-grid class="ion-no-margin ion-no-padding">
+        <ion-row>
+          <ion-col>
+            <ion-item button>
+              <ion-select formControlName="docType" placeholder='{{"UpdateOwnerTradeIn_ID"|translate}}'>
+                <ion-select-option [value]="opt.value" *ngFor="let opt of docList">{{ opt.label }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.docType" [messages]="formErrorMessages.docType"></app-item-err>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-input formControlName="docNum" placeholder='{{"UpdateOwnerTradeIn_IDNumber"|translate}}'></ion-input>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.docNum" [messages]="formErrorMessages.docNum"></app-item-err>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item button>
+              <ion-select formControlName="race" placeholder='{{"UpdateOwnerTradeIn_Race"|translate}}'>
+                <ion-select-option [value]="opt.value" *ngFor="let opt of raceList">{{ opt.label }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.race" [messages]="formErrorMessages.race"></app-item-err>
+          </ion-col>
+          <ion-col>
+            <ion-item button>
+              <ion-select formControlName="gender" placeholder='{{"UpdateOwnerTradeIn_Gender"|translate}}'>
+                <ion-select-option [value]="opt.value" *ngFor="let opt of genderList">{{ opt.label }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.gender" [messages]="formErrorMessages.gender"></app-item-err>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="birthday" placeholder='{{"UpdateOwnerTradeIn_Birthday"|translate}}'></ion-datetime>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.birthday" [messages]="formErrorMessages.birthday"></app-item-err>
+    </div>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin ion-no-padding">
+        <ion-row>
+          <ion-col size="4">
+            <ion-item button>
+              <ion-select formControlName="countryCode" placeholder='{{"UpdateOwnerTradeIn_CountryCode"|translate}}'>
+                <ion-select-option [value]="opt.value" *ngFor="let opt of countryCode">{{ opt.label }} </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.countryCode" [messages]="formErrorMessages.countryCode"></app-item-err>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-input formControlName="mobile" placeholder='{{"UpdateOwnerTradeIn_MobileNumber"|translate}}'></ion-input>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.mobile" [messages]="formErrorMessages.mobile"></app-item-err>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item>
+        <ion-input formControlName="email" placeholder='{{"UpdateOwnerTradeIn_Email"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.email" [messages]="formErrorMessages.email"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="line1" placeholder='{{"UpdateOwnerTradeIn_Line1"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.line1" [messages]="formErrorMessages.line1"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="line2" placeholder='{{"UpdateOwnerTradeIn_Line2"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.line2" [messages]="formErrorMessages.line2"></app-item-err>
+      <ion-grid class="ion-no-margin ion-no-padding">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input formControlName="postcode" placeholder='{{"UpdateOwnerTradeIn_Postcode"|translate}}'></ion-input>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.postcode" [messages]="formErrorMessages.postcode"></app-item-err>
+          </ion-col>
+          <ion-col *ngIf="sysCountryCode == 'my'">
+            <ion-item button>
+              <ion-select formControlName="city" placeholder='{{"UpdateOwnerTradeIn_City"|translate}}'>
+                <ion-select-option [value]="opt.value" *ngFor="let opt of cityList"> {{ opt.label }} </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <app-item-err [control]="contactForm.controls?.city" [messages]="formErrorMessages.city"></app-item-err>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item button *ngIf="sysCountryCode == 'my'">
+        <ion-select formControlName="state" placeholder='{{"UpdateOwnerTradeIn_State"|translate}}' readonly>
+          <ion-select-option [value]="opt.value" *ngFor="let opt of stateList"> {{ opt.label }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.state" [messages]="formErrorMessages.state"></app-item-err>
+      <ion-item button>
+        <ion-select formControlName="country" placeholder='{{"UpdateOwnerTradeIn_Country"|translate}}' readonly>
+          <ion-select-option [value]="opt.value" *ngFor="let opt of countryList"> {{ opt.label }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.country" [messages]="formErrorMessages.country"></app-item-err>
+    </div>
+    <div class="ion-margin-top">
+      <ion-item>
+        <ion-textarea rows="6" formControlName="remarks" placeholder='{{"UpdateOwnerTradeIn_Notes"|translate}}'></ion-textarea>
+      </ion-item>
+      <app-item-err [control]="contactForm.controls?.remarks" [messages]="formErrorMessages.remarks"></app-item-err>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,23 @@
+<ng-container [formGroup]="form">
+  <ion-item>
+    <ion-input (ionChange)="emit()" debounce="500" formControlName="line1" placeholder="{{ 'EditTestdrivePage_Line1' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.line1" [messages]="messages.line1"></app-item-err>
+  <ion-item>
+    <ion-input (ionChange)="emit()" debounce="500" formControlName="line2" placeholder="{{ 'EditTestdrivePage_Line2' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.line2" [messages]="messages.line2"></app-item-err>
+  <ion-item>
+    <ion-select formControlName="country" (ionChange)="emit()" placeholder="{{ 'EditTestdrivePage_Country' | translate }}" readonly>
+      <ion-select-option [value]="opt.value" *ngFor="let opt of countryList">
+        {{ opt.label }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <app-item-err [control]="form.controls?.country" [messages]="messages.country"></app-item-err>
+  <ion-item>
+    <ion-input (ionChange)="emit()" debounce="500" formControlName="postalCode" placeholder="{{ 'EditTestdrivePage_PostalCode' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.postalCode" [messages]="messages.postalCode"></app-item-err>
+  <ion-item></ion-item>
+</ng-container>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar class="ion-margin-top" showCancelButton="always" debounce="500" (ionChange)="search($event)" (ionCancel)="dismiss()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="isLoading" lines="none">
+      <ion-label class="ion-text-center">
+        <ion-spinner></ion-spinner>
+      </ion-label>
+    </ion-item>
+    <ion-item-divider>Currently Selected</ion-item-divider>
+    <ng-container *ngFor="let item of modelList">
+      <ion-item *ngIf="item?.isChecked">
+        <ion-label>{{ item?.label }}</ion-label>
+        <ion-checkbox color="primary" [(ngModel)]="item.isChecked" (click)="checkSingle(item.label)" slot="start"></ion-checkbox>
+      </ion-item>
+    </ng-container>
+    <ion-item-divider>Search Results</ion-item-divider>
+    <ion-item *ngFor="let item of searchResult">
+      <ion-label>{{ item?.label }}</ion-label>
+      <ion-checkbox color="primary" [(ngModel)]="item.isChecked" (click)="checkSingle(item.label)" slot="start"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer className="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block" (click)="save()">Confirm</ion-button>
+  </ion-toolbar>
+</ion-footer>

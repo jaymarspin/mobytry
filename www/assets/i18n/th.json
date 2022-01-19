@@ -1,0 +1,52 @@
+{
+  "Common_Back": "Back",
+
+  "HomePage_Home": "Home",
+  "HomePage_WhatsNew": "What's New",
+  "HomePage_ComingSoon": "Coming Soon",
+
+  "Menu_Task": "Task",
+  "Menu_Test_Drive": "Test Drive",
+  "Menu_Open_Opportunity": "Open Opportunity",
+  "Menu_Trade_In": "Trade-In",
+  "Menu_Quotation": "Quotation",
+  "Menu_Check_Stock": "Check Stock",
+  "Menu_More": "More",
+  "Menu_Sales": "Sales",
+  "Menu_Documents": "Documents",
+  "Menu_Aftersales": "Aftersales",
+
+  "Nav_Account": "Account",
+  "Nav_Language": "Language",
+  "Nav_Notifications": "Notifications",
+  "Nav_Settings": "Settings",
+  "Nav_LogOut": "Log Out",
+
+  "ProfilePage_Profile": "Profile",
+  "ProfilePage_LogOut": "Log Out",
+
+  "LanguagePage_Language": "Language",
+
+  "NewLeadsPage_NewLeads": "New Contact",
+
+  "ContactComponent_MobileNumber": "Mobile Number",
+  "ContactComponent_ContactName": "Contact Name",
+  "ContactComponent_Search": "Search",
+  "ContactComponent_AddNew": "Add New",
+
+  "ContactSearch_QuickAccess": "Quick Access",
+  "ContactSearch_SearchResults": "Search Results",
+
+  "EditContact_AddContact": "Add Contact",
+  "EditContact_EditContact": "Edit Contact",
+  "EditContact_Salutation": "Salutation",
+  "EditContact_FirstName": "First Name",
+  "EditContact_LastName": "Last Name",
+  "EditContact_PreferredName": "Preferred Name",
+  "EditContact_Company": "Company",
+  "EditContact_MobileNumber": "Mobile Number",
+  "EditContact_Email": "Email",
+  "EditContact_Birthday": "Birthday",
+  "EditContact_Notes": "Notes",
+  "EditContact_Done": "Done"
+}

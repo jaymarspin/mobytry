@@ -1,0 +1,75 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-align-items-center bg-white">
+      <!-- Move back one screen of the slides -->
+      <ion-col size="2">
+        <ion-button fill="clear" (click)="back()">
+          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="8" class="ion-text-center">
+        <ion-text>
+          <h2>{{ viewTitle }}</h2>
+        </ion-text>
+      </ion-col>
+
+      <!-- Move forward one screen of the slides -->
+      <ion-col size="2">
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="bg-white">
+      <ion-col size="12">
+        <calendar
+          [eventSource]="eventSource"
+          [calendarMode]="calendar.mode"
+          [currentDate]="calendar.currentDate"
+          (onEventSelected)="onEventSelected($event)"
+          (onTitleChanged)="onViewTitleChanged($event)"
+          [step]="calendar.step"
+          [startingDayWeek]="calendar.startingDayWeek"
+          [monthviewEventDetailTemplate]="template"
+        >
+        </calendar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding ion-no-margin">
+        <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+          <div class="button-bg ion-padding">
+            <div class="border ion-padding ion-text-center" (click)="add()">
+              <ion-icon name="add-circle" color="primary" class="add-icon"></ion-icon>
+              <ion-label color="primary">
+                {{ 'TasksPage_NewTask' | translate }}
+              </ion-label>
+            </div>
+          </div>
+          <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+            <ion-item class="ion-text-wrap" *ngFor="let item of selectedDate?.events">
+              <!-- <ion-checkbox slot="start" [(ngModel)]="item.isComplete" (ionChange)="setStatus(item)"></ion-checkbox> -->
+              <ion-label (click)="eventSelected(item)">
+                <h3>{{ item?.title }}</h3>
+                <ul>
+                  <li *ngIf="item?.ContactName">
+                    <p>
+                      {{ item?.ContactName }}
+                    </p>
+                  </li>
+                  <li *ngIf="item?.Notes">
+                    <p>{{ item?.Notes }}</p>
+                  </li>
+                </ul>
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="selectedDate?.events.length == 0">
+              <div class="no-events-label">{{ 'TasksPage_NoEvent' | translate }}</div>
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,8 @@
+<ion-item lines="none" *ngIf="!control?.valid && (control?.touched || control?.dirty) && getErrors()">
+  <ion-note *ngIf="size == 'small'" color="danger" class="ion-text-wrap">
+    <p *ngFor="let errMsg of getErrors()">{{ errMsg }}</p>
+  </ion-note>
+  <ion-label color="danger" class="ion-text-wrap" *ngIf="size == 'large'">
+    <p *ngFor="let errMsg of getErrors()">{{ errMsg }}</p>
+  </ion-label>
+</ion-item>

@@ -1,0 +1,29 @@
+<ion-tabs>
+  <ion-fab vertical="bottom" horizontal="center" translucent="true" (click)="goToSearch()">
+    <ion-fab-button>
+      <ion-icon name="search"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-tab-bar slot="bottom" class="ion-no-border" id="tabBar">
+    <ion-tab-button [tab]="tabs[0]?.tabUrl">
+      <ion-icon [name]="tabs[0]?.icon"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button [tab]="tabs[1]?.tabUrl" class="comments'">
+      <ion-icon [name]="tabs[1]?.icon"></ion-icon>
+    </ion-tab-button>
+
+    <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="red" fill-rule="evenodd"></path>
+    </svg>
+
+    <ion-tab-button [tab]="tabs[2]?.tabUrl">
+      <ion-icon [name]="tabs[2]?.icon"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button [tab]="tabs[3]?.tabUrl">
+      <ion-icon [name]="tabs[3]?.icon"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

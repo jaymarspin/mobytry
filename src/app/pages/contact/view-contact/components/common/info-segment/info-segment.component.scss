@@ -1,0 +1,54 @@
+div {
+  background: white;
+  border-radius: 20px;
+}
+
+hr {
+  background: lightgray;
+}
+
+.bg-white {
+  background-color: white;
+  border-radius: 20px;
+}
+
+ion-input {
+  --color: var(--ion-color-primary);
+}
+
+.border-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.border-bottom {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.border {
+  border: 3px #cacaca dashed;
+}
+
+.add-icon {
+  font-size: 20px;
+  margin-right: 5px;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+
+ion-icon[name='close'] {
+  font-size: 20px;
+}
+
+.right-details {
+  float: right;
+  clear: right;
+  display: block;
+  position: relative;
+}
+
+.margin-top {
+  position: relative;
+  margin-top: 10px;
+}

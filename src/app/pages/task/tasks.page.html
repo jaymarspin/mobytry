@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ng-container *ngIf="isListView">
+        <ion-button (click)="switchView()">
+          <ion-icon slot="icon-only" name="calendar"></ion-icon>
+        </ion-button>
+        <ion-button (click)="showFilter()">
+          <ion-icon slot="icon-only" name="funnel"></ion-icon>
+        </ion-button>
+      </ng-container>
+      <ng-container *ngIf="!isListView">
+        <ion-button (click)="switchView()">
+          <ion-icon slot="icon-only" name="list"></ion-icon>
+        </ion-button>
+      </ng-container>
+    </ion-buttons>
+    <ion-title>
+      {{"TasksPage_Tasks"|translate}} <br />
+      <ion-text *ngIf="oppId" class="sub-header"> {{"TasksPage_OpportunityID"|translate}}: {{oppId}} </ion-text>
+    </ion-title>
+  </ion-toolbar>
+  <!-- <ion-toolbar class="bg">
+    <ion-searchbar
+      class="ion-margin-top ion-no-padding ion-padding-start ion-padding-end ion-margin-bottom"
+      search-icon=""
+      debounce="500"
+      [(ngModel)]="searchInput"
+      placeholder="{{'OffersPage_Search'|translate}}"
+      (ionChange)="search()"
+      (ionCancel)="getEventsAndTasks()"
+      (ionClear)="getEventsAndTasks()"
+    >
+    </ion-searchbar>
+  </ion-toolbar> -->
+</ion-header>
+<ion-content>
+  <app-calendar [tasks]="tasks" [events]="events" [oppId]="oppId" (month)="dateChanged($event)" *ngIf="!isListView"></app-calendar>
+  <!-- <app-list-view
+    [oppId]="oppId"
+    [filterObj]="filterObj"
+    [search]="searchInput"
+    *ngIf="isListView"
+  ></app-list-view> -->
+</ion-content>

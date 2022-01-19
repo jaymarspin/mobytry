@@ -1,0 +1,28 @@
+.border-bottom {
+  border-bottom: 1px solid #dedde0;
+}
+
+.small-font {
+  font-size: 12px;
+  color: rgba(60, 60, 67, 0.6);
+}
+
+.big-font {
+  font-size: 15px;
+}
+
+.big-icon {
+  font-size: 25px;
+}
+
+ion-icon[name='heart'] {
+  font-size: 25px;
+}
+
+.white {
+  background: white;
+}
+
+.flex {
+  flex-grow: 1;
+}

@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="done()">{{'Common_Done'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ng-container [formGroup]="offerForm">
+    <div>
+      <ion-item>
+        <ion-input formControlName="variantName" placeholder='{{"EditOfferPage_VariantName"|translate}}' (click)="selectVariantName()"></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.variantName" [messages]="formErrorMessages.variantName"></app-item-err>
+      <ion-item>
+        <ion-datetime displayFormat="YYYY" formControlName="yearMake" placeholder='{{"EditOfferPage_YearMake"|translate}}'></ion-datetime>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.yearMake" [messages]="formErrorMessages.yearMake"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="sellingPrice" placeholder='{{"EditOfferPage_SellingPrice"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.sellingPrice" [messages]="formErrorMessages.sellingPrice"></app-item-err>
+      <ion-item>
+        <ion-select formControlName="exciseDuty" placeholder='{{"EditOfferPage_ExciseDuty"|translate}}'>
+          <ion-select-option [value]="opt.value" *ngFor="let opt of exciseDuties"> {{ opt.label }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.exciseDuty" [messages]="formErrorMessages.exciseDuty"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="fleetDiscountPctg" placeholder='{{"EditOfferPage_FleetDiscountPctg"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.fleetDiscountPctg" [messages]="formErrorMessages.fleetDiscountPctg"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="fleetDiscount" placeholder='{{"EditOfferPage_FleetDiscount"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.fleetDiscount" [messages]="formErrorMessages.fleetDiscount"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="discount" placeholder='{{"EditOfferPage_Discount"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.discount" [messages]="formErrorMessages.discount"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="salesCampaign" placeholder='{{"EditOfferPage_SalesCampaign"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.salesCampaign" [messages]="formErrorMessages.salesCampaign"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="lifestyle" placeholder='{{"EditOfferPage_Lifestyle"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.lifestyle" [messages]="formErrorMessages.lifestyle"></app-item-err>
+      <ion-item>
+        <ion-label class="no-opacity">
+          <b>{{"EditOfferPage_Subtotal"|translate}}</b>
+        </ion-label>
+        <ion-input formControlName="subtotal"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select formControlName="regType" placeholder='{{"EditOfferPage_RegistrationType"|translate}}'>
+          <ion-select-option [value]="opt.value" *ngFor="let opt of regTypes"> {{ opt.label }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.regType" [messages]="formErrorMessages.regType"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="regFee" placeholder='{{"EditOfferPage_RegistrationFee"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.regFee" [messages]="formErrorMessages.regFee"></app-item-err>
+      <ion-item>
+        <ion-select formControlName="hpOwnership" placeholder='{{"EditOfferPage_HPOwnership"|translate}}'>
+          <ion-select-option [value]="opt.value" *ngFor="let opt of hpOwnerships"> {{ opt.label }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.hpOwnership" [messages]="formErrorMessages.hpOwnership"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="hpOwnershipFee" placeholder='{{"EditOfferPage_HPOwnershipFee"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.hpOwnershipFee" [messages]="formErrorMessages.hpOwnershipFee"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="roadTax" placeholder='{{"EditOfferPage_RoadTax"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.roadTax" [messages]="formErrorMessages.roadTax"></app-item-err>
+      <ion-item>
+        <ion-input formControlName="insurance" placeholder='{{"EditOfferPage_Insurance"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.insurance" [messages]="formErrorMessages.insurance"></app-item-err>
+      <ion-item>
+        <ion-label class="no-opacity">
+          <b>{{"EditOfferPage_TotalPrice"|translate}}</b>
+        </ion-label>
+        <ion-input formControlName="total"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="bookingFee" placeholder='{{"EditOfferPage_BookingFee"|translate}}'></ion-input>
+      </ion-item>
+      <app-item-err [control]="offerForm.controls?.bookingFee" [messages]="formErrorMessages.bookingFee"></app-item-err>
+    </div>
+  </ng-container>
+</ion-content>

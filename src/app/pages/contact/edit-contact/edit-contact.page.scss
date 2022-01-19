@@ -1,0 +1,23 @@
+ion-content {
+  --background: var(--ion-color-content-color);
+}
+
+div,
+.bg-white {
+  background: white;
+}
+
+ion-select {
+  width: 100%;
+}
+ion-col {
+  position: initial !important;
+}
+form {
+  position: relative;
+  display: block;
+}
+.border-gap {
+  height: 15px;
+  background-color: #e8eaed;
+}

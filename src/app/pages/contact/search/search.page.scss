@@ -1,0 +1,17 @@
+ion-content {
+  --background: var(--ion-color-content-color);
+}
+
+.white {
+  background: white;
+}
+
+.flex {
+  flex-grow: 1;
+}
+
+.ht-100 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

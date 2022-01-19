@@ -1,0 +1,121 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{"ViewTestdrivePage_Testdrive"|translate}}<br />
+      <ion-text class="sub-header"> {{"TestdrivePage_OpportunityID"|translate}}: {{testdrive?.OpportunityId}} </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <section class="ion-text-center">
+    <h2>{{testdrive?.ContactName}}</h2>
+    <ion-text class="sub-title">{{testdrive?.SourceName}}</ion-text>
+  </section>
+  <!-- CONTACT DETAILS -->
+  <section class="ion-margin-top">
+    <ion-text>
+      <b>{{"ViewTestdrivePage_ContactDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin">
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_IDNumber"|translate}} </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{testdrive?.DocNum}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_DrivingLicense"|translate}} </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{testdrive?.DrivingLicense}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_ExpiryDate"|translate}} </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{ testdrive?.ExpiryDate | date: "dd MMM y" }} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_PlannedStartDate"|translate}} </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{ testdrive?.PlannedStartDate | date: "dd MMM y h:mm a" }} </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
+  <!-- VEHICLE DETAILS -->
+  <section class="ion-margin-top" *ngIf="testdrive?.Vehicle">
+    <ion-text>
+      <b>{{"ViewTestdrivePage_VehicleDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ng-container [formGroup]="tdForm">
+        <ion-grid class="ion-no-margin">
+          <ion-row>
+            <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_VariantName"|translate}} </ion-col>
+            <ion-col size="6" class="ion-text-start" color="primary">
+              <ion-text color="primary"> {{testdrive?.Vehicle?.Name}} </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_Chassis"|translate}} </ion-col>
+            <ion-col size="6" class="ion-text-start" color="primary">
+              <ion-text color="primary"> {{testdrive?.Vehicle?.Chassis}} </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_StartTime"|translate}} </ion-col>
+            <ion-col size="6" class="ion-text-start">
+              <ion-text color="primary"> {{ testdrive?.Vehicle?.StartTime | date: "hh:mm a" }} </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_MileageStart"|translate}} </ion-col>
+            <ion-col size="6" class="ion-text-start">
+              <ion-text color="primary">{{testdrive?.Vehicle?.MileageStart}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_MileageEnd"|translate}} </ion-col>
+            <ion-col size="6" class="ion-text-start">
+              <ion-text color="primary">{{testdrive?.Vehicle?.MileageEnd}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6" class="ion-text-start"> {{"ViewTestdrivePage_Notes"|translate}} </ion-col>
+            <ion-col size="6" class="ion-text-start">
+              <ion-text color="primary">{{testdrive?.Vehicle?.Notes}}</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+    </div>
+  </section>
+  <!-- ADDITIONAL DETAILS -->
+  <section class="ion-margin-top">
+    <ion-text>
+      <b>{{"ViewTestdrivePage_AdditionalDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin ion-no-padding">
+        <ion-row>
+          <ion-col>
+            <ion-item button detail (click)="this.testdrive.IsSigned ? printTD() : signTD()">
+              <ion-label> {{"ViewTestdrivePage_IndemnityForm"|translate}} </ion-label>
+              <ion-label class="ion-text-end">
+                <ion-icon class="done-icon" color="primary" [name]="this.testdrive.IsSigned ? 'checkmark-circle' : 'ellipse-outline'"></ion-icon>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
+</ion-content>
+<ion-footer class="ion-padding" *ngIf="showFooter()">
+  <ion-button fill="outline" expand="block" color="primary" (click)="scan()" *ngIf="this.testdrive.Status == 'SCHEDULED'" [disabled]="!this.testdrive.IsSigned">
+    <ion-label> {{ "ViewTestdrivePage_Next" | translate }} </ion-label>
+  </ion-button>
+  <ion-button fill="outline" expand="block" color="primary" (click)="endTd()" *ngIf="this.testdrive.Status == 'VEHICLE OUT'">
+    <ion-label> {{ "ViewTestdrivePage_End" | translate }} </ion-label>
+  </ion-button>
+</ion-footer>

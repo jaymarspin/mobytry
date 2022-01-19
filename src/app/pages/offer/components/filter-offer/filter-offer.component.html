@@ -1,0 +1,83 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="reset()">
+        {{ 'OffersFilter_Reset' | translate }}
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'OffersFilter_Filter' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="ion-padding">
+    <ion-grid class="ion-no-margin ion-no-padding">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>
+            {{ 'OffersFilter_OfferStatus' | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center ion-padding-top">
+        <ion-col>
+          <div class="header-btn" (click)="updateOfferStatus('all')" [class.activated]="filterObj.offerStatus === 'all'">
+            <span>
+              <ion-icon name="apps" [color]="filterObj.offerStatus === 'all' ? 'primary' : 'medium'"></ion-icon>
+            </span>
+            <div>
+              <ion-label class="mat-small">
+                {{ 'OffersFilter_All' | translate }}
+              </ion-label>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="header-btn" (click)="updateOfferStatus('active')" [class.activated]="filterObj.offerStatus === 'active'">
+            <span>
+              <ion-icon name="play" [color]="filterObj.offerStatus === 'active' ? 'primary' : 'medium'"></ion-icon>
+            </span>
+            <div>
+              <ion-label class="mat-small">
+                {{ 'OffersFilter_Active' | translate }}
+              </ion-label>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="header-btn" (click)="updateOfferStatus('accepted')" [class.activated]="filterObj.offerStatus === 'accepted'">
+            <span>
+              <ion-icon name="checkmark" [color]="filterObj.offerStatus === 'accepted' ? 'primary' : 'medium'"></ion-icon>
+            </span>
+            <div>
+              <ion-label class="mat-small">
+                {{ 'OffersFilter_Accepted' | translate }}
+              </ion-label>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="header-btn" (click)="updateOfferStatus('rejected')" [class.activated]="filterObj.offerStatus === 'rejected'">
+            <span>
+              <ion-icon name="close" [color]="filterObj.offerStatus === 'rejected' ? 'primary' : 'medium'"></ion-icon>
+            </span>
+            <div>
+              <ion-label class="mat-small">
+                {{ 'OffersFilter_Declined' | translate }}
+              </ion-label>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<ion-footer class="ion-padding">
+  <ion-button fill="solid" expand="block" color="primary" (click)="apply()">
+    {{ 'Common_Apply' | translate }}
+  </ion-button>
+</ion-footer>

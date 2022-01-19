@@ -1,0 +1,50 @@
+<ng-container [formGroup]="form">
+  <ion-grid class="ion-no-padding ht-100">
+    <ion-row class="ion-padding white">
+      <ion-col size="12">
+        <ion-row class="ion-no-margin">
+          <ion-col>
+            <ion-item lines="none">
+              <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>
+              <ion-input
+                formControlName="mobile"
+                debounce="500"
+                clearInput="true"
+                (ionChange)="search()"
+                placeholder="{{ 'ContactComponent_MobileNumber' | translate }}"
+              ></ion-input>
+            </ion-item>
+            <app-item-err [control]="form.controls?.mobile" [messages]="messages.mobile"></app-item-err>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="ion-margin-top">
+              <ion-icon name="person" slot="start"></ion-icon>
+              <ion-input
+                formControlName="name"
+                debounce="500"
+                (ionChange)="search()"
+                clearInput="true"
+                placeholder="{{ 'ContactComponent_ContactName' | translate }}"
+              ></ion-input>
+            </ion-item>
+            <app-item-err [control]="form.controls?.name" [messages]="messages.name"></app-item-err>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-top">
+          <ion-col>
+            <ion-button color="primary" expand="block" (click)="add()">
+              {{ 'ContactComponent_AddNew' | translate }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding ion-margin-top white flex">
+      <ion-col size="12">
+        <app-search-result [searchParam]="contact" [isKeyword]="false" [oppId]="oppId"></app-search-result>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-container>

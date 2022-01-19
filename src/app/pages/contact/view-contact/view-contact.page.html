@@ -1,0 +1,116 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="editContact()">
+      <ion-button>{{'Common_Edit'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{"ViewContactPage_Contact"|translate}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar mode="md" class="ion-text-center">
+    <ion-grid class="ion-margin-bottom ion-margin-top">
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <h2>{{contact?.Name}}</h2>
+          </ion-text>
+          <ion-icon name="heart" color="primary" class="heart" *ngIf="contact?.Flag"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-text>{{contact?.CompanyName}}</ion-text>
+ 
+        
+          <ion-row class="ion-no-margin ion-no-padding">
+            <ion-col class="header-btn">
+  
+                <a href="sms:{{contact?.MobileNo}}" (click)="contactMedium('SMS')">
+                  <span>
+                    <ion-icon name="chatbubbles" color="primary"></ion-icon>
+                  </span>
+                 
+                    <ion-label class="mat-small">
+                      {{"ViewContactPage_Message"|translate}}
+                    </ion-label>
+               
+                </a>
+           
+            </ion-col>
+            <ion-col class="header-btn">
+        
+                <a href="tel:{{contact?.MobileNo}}" (click)="contactMedium('Phone Call')">
+                  <span>
+                    <ion-icon name="call" color="primary"></ion-icon>
+                  </span>
+            
+                    <ion-label class="mat-small">
+                      {{"ViewContactPage_Call"|translate}}
+                    </ion-label>
+          
+                </a>
+ 
+            </ion-col>
+            <ion-col class="header-btn">
+         
+                <a href="http://wa.me/{{contact?.CountryCode + contact?.MobileNo}}" (click)="contactMedium('Whatsapp')">
+                  <span>
+                    <ion-icon name="logo-whatsapp" color="primary"></ion-icon>
+                  </span>
+                
+                    <ion-label class="mat-small">
+                      {{"ViewContactPage_Whatsapp"|translate}}
+                    </ion-label>
+               
+                </a>
+       
+            </ion-col>
+            <ion-col class="header-btn">
+              
+                <a href="mailto:{{contact?.Email}}" (click)="contactMedium('Email')">
+                  <span>
+                    <ion-icon name="mail" color="primary"></ion-icon>
+                  </span>
+               
+                    <ion-label class="mat-small">
+                      {{"ViewContactPage_Email"|translate}}
+                    </ion-label>
+               
+                </a>
+         
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+   
+    
+  </ion-toolbar>
+  <ion-toolbar mode="ios">
+    <ion-segment mode="ios" [(ngModel)]="segment" class="ion-no-margin">
+      <ion-segment-button value="info">
+        <ion-label> {{"ViewContactPage_Info"|translate}} </ion-label>
+      </ion-segment-button>
+      <!-- <ion-segment-button value="document">
+        <ion-label> {{"ViewContactPage_Document"|translate}} </ion-label>
+      </ion-segment-button> -->
+      <ion-segment-button value="opportunity">
+        <ion-label>
+          {{"ViewContactPage_Opportunity"|translate}}
+          <!-- <span class="dot"></span> -->
+        </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- INFO -->
+  <ng-container *ngIf="segment === 'info'">
+    <app-info-segment [contact]="contact" [vehicles]="vehOwnership"></app-info-segment>
+  </ng-container>
+  <!-- DOCUMENT -->
+  <ng-container *ngIf="segment === 'document'">
+    <app-document-segment [documents]="documents"></app-document-segment>
+  </ng-container>
+  <!-- OPPORTUNITY -->
+  <ng-container *ngIf="segment === 'opportunity'">
+    <app-opportunity-segment [opp]="opportunities" [contact]="contact"></app-opportunity-segment>
+  </ng-container>
+</ion-content>

@@ -1,0 +1,13 @@
+export const API_SERVICE_KEY = 'API';
+export const USER_SERVICE_KEY = 'UserAPI';
+export const NOTIFY_API_KEY = 'NotificationAPI';
+export const MENU_API_KEY = 'MenuAPI';
+export const CONTACT_SERVICE_KEY = 'ContactAPI';
+export const CONTACT_VALIDATOR_KEY = 'ContactValidator';
+export const DOCUMENT_SERVICE_KEY = 'DocumentAPI';
+export const OPPORTUNITY_SERVICE_KEY = 'OpportunityAPI';
+export const TESTDRIVE_SERVICE_KEY = 'TestdriveAPI';
+export const OFFER_SERVICE_KEY = 'OfferAPI';
+export const TRADEIN_SERVICE_KEY = 'TradeinAPI';
+export const TASK_SERVICE_KEY = 'TaskAPI';
+export const EVENT_SERVICE_KEY = 'EventAPI';

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1006112861545-ppgiprvf3cdqhiati838k02qreacfngf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1006112861545-ppgiprvf3cdqhiati838k02qreacfngf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA02Qd9kkAN8g4YU4bPeBbGkY15L62J8J4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1006112861545</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.simedarbymotors.sg.moby.purchase</string>
+	<key>PROJECT_ID</key>
+	<string>moby-purchase-sg</string>
+	<key>STORAGE_BUCKET</key>
+	<string>moby-purchase-sg.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1006112861545:ios:b7f84e5319310711bce1f8</string>
+	<key>DATABASE_URL</key>
+	<string>https://moby-purchase-sg.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,24 @@
+<div class="ion-margin-top ion-padding ion-margin ion-text-center border" (click)="uploadFile()">
+  <ion-icon name="add-circle" color="primary" class="add-icon"></ion-icon>
+  <ion-label color="primary">
+    {{ 'ViewContactPage_AddFiles' | translate }}
+  </ion-label>
+</div>
+<div class="ion-margin border-radius" *ngFor="let doc of documents">
+  <ion-grid class="ion-no-margin">
+    <ion-row>
+      <ion-col>
+        <ion-label color="primary"
+          ><b>{{ doc?.Type }}</b></ion-label
+        >
+      </ion-col>
+      <ion-col class="ion-text-end" size="7">
+        <ion-label>{{ doc?.Name }}</ion-label
+        ><br />
+        <ion-label>{{ doc?.Number }}</ion-label
+        ><br />
+        <ion-label>{{ doc?.UploadedDate | date: 'dd MMM y h:mm a' }}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

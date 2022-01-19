@@ -1,0 +1,15 @@
+ion-button {
+  --border-color: rgba(60, 60, 67, 0.36);
+  --border-style: solid;
+  --border-width: 1px;
+  --color: var(--ion-color-primary);
+  --background: white;
+  --border-radius: 0px;
+}
+
+ion-item {
+  border: 1px solid black;
+}
+ion-select {
+  width: 100%;
+}

@@ -1,0 +1,66 @@
+<ion-app>
+  <ion-menu side="start" swipeGesture="false" type="overlay" contentId="main">
+    <ion-header mode="md">
+      <ion-toolbar color="primary" mode="md">
+        <ion-title>
+          <h2>{{ 'Nav_Account' | translate }}</h2>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list class="ion-no-padding ion-margin-top">
+        <ion-menu-toggle auto-hide="false">
+          <ion-grid class="ion-no-margin ion-no-padding">
+            <ion-row>
+              <ion-col>
+                <div class="ion-margin-start">
+                  <h4>
+                    <ion-label color="primary">
+                      {{ user?.name }}
+                    </ion-label>
+                  </h4>
+                  <ion-label class="mat-small"> {{ user?.companyName }} </ion-label>
+                  <br />
+                  <ion-label class="mat-small"> {{ user?.teamName }} </ion-label>
+                </div>
+              </ion-col>
+              <!-- <ion-col size="2">
+                <div class="ion-margin-end h100 ion-text-end icon-bottom">
+                  <ion-icon (click)="goToProfile()" name="create-outline" class="icon-size" color="primary">
+                  </ion-icon>
+                </div>
+              </ion-col> -->
+            </ion-row>
+          </ion-grid>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false" (click)="goToLanguage()">
+          <ion-item detail="true" button>
+            <ion-label>{{ 'Nav_Language' | translate }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false" (click)="goToNotifications()">
+          <ion-item detail="true" button>
+            <ion-label>{{ 'Nav_Notifications' | translate }}</ion-label>
+            <!-- <ion-badge color="danger" slot="end" *ngIf="notificationCount">{{notificationCount}}</ion-badge> -->
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item detail="true" button>
+            <ion-label>{{ 'Nav_Settings' | translate }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" (click)="logout()">
+          <ion-item lines="none" class="ion-text-center">
+            {{ 'Nav_LogOut' | translate }}
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-item lines="none" class="mat-small"> v{{ appVersionNumber | async }} - {{ appEnv }} </ion-item>
+      </ion-list>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

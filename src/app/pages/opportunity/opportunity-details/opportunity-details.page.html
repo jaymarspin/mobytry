@@ -1,0 +1,288 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">{{'Common_Save'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{"OpportunityTab_Opportunity"|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="ion-text-center ion-padding">
+    <h2>{{opp?.ContactName}}</h2>
+    <ion-icon name="{{ getFavIcon(opp) }}" color="primary" class="heart" *ngIf="countryCode == 'my'"></ion-icon>
+    <ion-text class="sub">{{opp?.Source}}</ion-text>
+    <!-- 1ST ROW -->
+    <div class="ion-margin-bottom ion-margin-top">
+      <ion-grid class="ion-no-margin ion-no-padding">
+        <ion-row>
+          <ion-col>
+            <div class="header-btn" (click)="goToTestdrives()">
+              <span>
+                <ion-icon src="assets/icon/opportunity/testdrive.svg" color="primary"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small"> {{"OpportunityDetails_Testdrive"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="header-btn" (click)="goToTradeIns()">
+              <span>
+                <ion-icon src="assets/icon/opportunity/tradein.svg" color="primary"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small"> {{"OpportunityDetails_TradeIn"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col *ngIf="false">
+            <div class="header-btn" (click)="goToOffers()">
+              <span>
+                <ion-icon name="document" color="primary"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small"> {{"OpportunityDetails_Offer"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col *ngIf="false">
+            <div class="header-btn">
+              <span>
+                <ion-icon src="assets/icon/opportunity/booking-disabled.svg"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small" color="medium"> {{"OpportunityDetails_Booking"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- 2ND ROW -->
+    <div class="ion-margin-bottom ion-margin-top">
+      <ion-grid class="ion-no-margin ion-no-padding">
+        <ion-row>
+          <ion-col *ngIf="false">
+            <div class="header-btn" (click)="goToDeliveries()">
+              <span>
+                <ion-icon src="assets/icon/opportunity/delivery-disabled.svg"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small" color="medium"> {{"OpportunityDetails_Delivery"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col *ngIf="false">
+            <div class="header-btn" (click)="goToActivityLogs()">
+              <span>
+                <ion-icon name="time" color="primary"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small"> {{"OpportunityDetails_ActivityLogs"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="header-btn" (click)="goToTasks()">
+              <span>
+                <ion-icon name="calendar" color="primary"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small"> {{"OpportunityDetails_Tasks"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col *ngIf="false">
+            <div class="header-btn">
+              <span>
+                <ion-icon src="assets/icon/opportunity/more.svg" color="primary"></ion-icon>
+              </span>
+              <div>
+                <ion-label class="mat-small"> {{"OpportunityDetails_Others"|translate}} </ion-label>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <ng-container [formGroup]="oppForm">
+      <div class="ion-margin-bottom ion-margin-top">
+        <h4 class="ion-text-start ion-padding-left">{{"OpportunityDetails_ModelInterest"|translate}}</h4>
+        <div class="ion-margin-bottom ion-margin-top">
+          <ion-item>
+            <ion-input formControlName="modelInterest" placeholder="Model Interest" (ionFocus)="showModelInterestComp()" class="w100"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      <!-- <div class="ion-margin-bottom ion-margin-top">
+        <h4 class="ion-text-start ion-padding-left">
+          {{"OpportunityDetails_ModelInterest"|translate}}
+        </h4>
+        <div class="ion-margin-bottom ion-margin-top">
+          <ion-item lines="none">
+            <ion-grid
+              class="ion-no-margin ion-no-padding ion-text-start pbt-10"
+            >
+              <ion-row *ngFor="let model of getModelInterest()">
+                <ion-col>
+                  <ion-label class="ion-text-wrap">{{model?.label}}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-icon
+                  name="add"
+                  color="primary"
+                  class="ion-align-self-center"
+                ></ion-icon>
+                <ion-label class="ion-text-wrap" (click)="addModelInterest()">
+                  <a> {{"OpportunityDetails_AddModelInterest"|translate}}</a>
+                </ion-label>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
+      </div> -->
+      <!-- Planned Purchase Date -->
+      <div class="ion-margin-bottom ion-margin-top">
+        <h4 class="ion-text-start ion-padding-left">{{"OpportunityDetails_PlannedPurchaseDate"|translate}}</h4>
+        <!-- Date Range (Immediate, Within 3 Months) -->
+        <div class="ion-margin-bottom ion-margin-top">
+          <ion-item>
+            <ion-select
+              interface="action-sheet"
+              formControlName="PPDRange"
+              placeholder='{{"OpportunityDetails_PPDRange"|translate}}'
+              (ionChange)="changePPD($event)"
+              class="w100"
+            >
+              <ion-select-option [value]="opt.value" *ngFor="let opt of ppDateRange"> {{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <!-- Custom Date Selection -->
+        <div class="ion-margin-bottom ion-margin-top" *ngIf="oppForm.value?.PPDRange === customPPDate">
+          <ion-item>
+            <ion-datetime
+              displayFormat="DD MMM YYYY"
+              [min]="ppDateMin"
+              [max]="ppDateMax"
+              formControlName="PPD"
+              (ionChange)="changePPD($event)"
+              placeholder='{{"OpportunityDetails_PPDDate"|translate}}'
+              class="w100"
+            >
+            </ion-datetime>
+          </ion-item>
+          <app-item-err [control]="oppForm.controls?.PPD" [messages]="formErrorMessages.PPD"></app-item-err>
+        </div>
+        <!-- PPD Reason -->
+        <div class="ion-margin-bottom ion-margin-top" *ngIf="isPPDChanged">
+          <ion-item lines="none">
+            <ion-textarea rows="3" formControlName="PPDReason" placeholder='{{"OpportunityDetails_PPDReason"|translate}}' class="w100"></ion-textarea>
+          </ion-item>
+          <app-item-err [control]="oppForm.controls?.PPDReason" [messages]="formErrorMessages.PPDReason"></app-item-err>
+        </div>
+      </div>
+      <div class="ion-margin-bottom ion-margin-top">
+        <h4 class="ion-text-start ion-padding-left">{{"OpportunityDetails_Source"|translate}}</h4>
+        <div class="ion-margin-bottom ion-margin-top">
+          <ion-item>
+            <ion-select
+              interface="action-sheet"
+              formControlName="source"
+              (ionChange)="changeCmpgSource($event)"
+              [compareWith]="compareId"
+              placeholder='{{"OpportunityDetails_Source"|translate}}'
+              class="w100"
+            >
+              <ion-select-option [value]="opt" *ngFor="let opt of cmpgList"> {{ opt.Name }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="ion-margin-bottom ion-margin-top">
+          <ion-item>
+            <ion-select multiple="true" formControlName="channel" placeholder='{{"OpportunityDetails_Channel"|translate}}' class="w100">
+              <ion-select-option [value]="opt" *ngFor="let opt of chnlList"> {{ opt }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </div>
+      <div class="ion-margin-bottom ion-margin-top">
+        <h4 class="ion-text-start ion-padding-left">{{"OpportunityDetails_LeadStatus"|translate}}</h4>
+        <div class="ion-margin-bottom ion-margin-top">
+          <ion-grid class="ion-no-margin ion-no-padding">
+            <ion-row>
+              <ion-grid class="ion-no-margin ion-no-padding opp-header ion-padding-top">
+                <ion-row>
+                  <ion-col> {{"OpportunityDetails_Cold"|translate}} </ion-col>
+                  <ion-col> {{"OpportunityDetails_Warm"|translate}} </ion-col>
+                  <ion-col> {{"OpportunityDetails_Hot"|translate}} </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-row>
+            <ion-row>
+              <ion-item lines="none" class="w100">
+                <ion-range min="0" max="100" step="50" snaps="true" formControlName="warmth" mode="ios" [disabled]="countryCode == 'sg'">
+                  <ion-icon slot="start" name="snow" color="secondary"></ion-icon>
+                  <ion-icon slot="end" name="flame" color="danger"></ion-icon>
+                </ion-range>
+              </ion-item>
+              <app-item-err [control]="oppForm.controls?.warmth" [messages]="formErrorMessages.warmth"></app-item-err>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+      <div class="ion-margin-bottom ion-margin-top">
+        <h4 class="ion-text-start ion-padding-left">{{"OpportunityDetails_OpportunityStatus"|translate}}</h4>
+        <div class="ion-margin-bottom ion-margin-top">
+          <ion-grid class="ion-no-margin ion-no-padding">
+            <ion-row>
+              <ion-col>
+                <div class="header-btn status" (click)="updateOppStatus('open')">
+                  <span>
+                    <ion-icon src="{{getOppColor('open', opp)}}"></ion-icon>
+                  </span>
+                  <div>
+                    <ion-label class="mat-small"> {{"OpportunityDetails_Open"|translate}} </ion-label>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="header-btn status" (click)="updateOppStatus('closed')">
+                  <span>
+                    <ion-icon name="close-circle" color="{{getOppColor('closed', opp)}}"></ion-icon>
+                  </span>
+                  <div>
+                    <ion-label class="mat-small"> {{"OpportunityDetails_Lost"|translate}} </ion-label>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col *ngIf="countryCode == 'my'">
+                <div class="header-btn status" (click)="updateOppStatus('deferred')">
+                  <span>
+                    <ion-icon name="timer" color="{{getOppColor('deferred', opp)}}"></ion-icon>
+                  </span>
+                  <div>
+                    <ion-label class="mat-small"> {{"OpportunityDetails_Deferred"|translate}} </ion-label>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+      <div class="ion-margin-bottom ion-margin-top">
+        <h4 class="ion-text-start ion-padding-left">{{"OpportunityDetails_Notes"|translate}}</h4>
+        <div class="ion-margin-bottom ion-margin-top ion-text-start">
+          <ion-item lines="none">
+            <ion-textarea rows="6" formControlName="notes" placeholder='{{"EditContact_Notes"|translate}}' readonly="true"></ion-textarea>
+          </ion-item>
+          <app-item-err [control]="oppForm.controls?.notes" [messages]="formErrorMessages.notes"></app-item-err>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

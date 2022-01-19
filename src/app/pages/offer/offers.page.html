@@ -1,0 +1,62 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="showFilter()">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{"OffersPage_Offers"|translate}} <br />
+      <ion-text *ngIf="oppId" class="sub-header"> {{"TestdrivePage_OpportunityID"|translate}}: {{oppId}} </ion-text>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar class="bg" *ngIf="oppId">
+    <ion-searchbar
+      class="ion-margin-top ion-no-padding ion-padding-start ion-padding-end"
+      search-icon=""
+      debounce="500"
+      [(ngModel)]="searchInput"
+      placeholder="{{'OffersPage_Search'|translate}}"
+      (ionChange)="search()"
+      (ionCancel)="getOffers()"
+      (ionClear)="getOffers()"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-toolbar class="bg" *ngIf="oppId">
+    <div class="border ion-margin-start ion-margin-end ion-padding ion-text-center" (click)="add()">
+      <ion-icon name="add-circle" color="primary" class="add-icon"></ion-icon>
+      <ion-label color="primary"> {{ "OffersPage_AddOffer" | translate }} </ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding-start ion-padding-end ion-padding-bottom">
+  <div class="ion-margin-top ion-margin-bottom border-radius" *ngFor="let item of offers">
+    <ion-grid class="ion-no-margin">
+      <ion-row>
+        <ion-col>
+          <div class="ion-margin-bottom">
+            <ion-label><b>{{item?.Status}}</b></ion-label
+            ><br />
+            <ion-label>
+              <b>{{item?.ContactName}}</b>
+            </ion-label>
+          </div>
+          <div class="bottom-icon">
+            <ion-icon name="document"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col class="ion-text-start">
+          <ion-label>{{ item?.VariantName }}</ion-label><br />
+          <ion-label>{{ item?.CreatedDate | date: "dd MMM y hh:mm a" }}</ion-label><br />
+          <ion-label>
+            <a (click)="view(item)"> {{"OffersPage_ViewDetails"|translate}} </a>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

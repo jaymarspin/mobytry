@@ -1,0 +1,16 @@
+{
+  "name": "BaseApp",
+  "integrations": {
+    "capacitor": {},
+    "enterprise": {
+      "keyId": 2022,
+      "productKey": "key_5fb89306e8cc47db8cd858db951b471f",
+      "appId": "dd21d255",
+      "orgId": "f4958666-aa59-45b2-bb49-572ec8364dc0",
+      "registries": [
+        "@ionic-enterprise;https://registry.ionicframework.com/"
+      ]
+    }
+  },
+  "type": "angular"
+}

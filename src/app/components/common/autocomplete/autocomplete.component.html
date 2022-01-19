@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar
+      class="ion-margin-top"
+      showCancelButton="always"
+      search-icon=""
+      debounce="500"
+      [(ngModel)]="searchInput"
+      placeholder="Search"
+      (ionChange)="search()"
+      (ionCancel)="dismiss()"
+      (ionBlur)="onBlur()"
+      [type]="searchType ? searchType : 'search'"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="isLoading" lines="none">
+      <ion-label class="ion-text-center">
+        <ion-spinner></ion-spinner>
+      </ion-label>
+    </ion-item>
+    <ion-item button detail="false" *ngFor="let item of searchResult; index as i" (click)="dismiss(i)">
+      <ion-label>
+        {{ item?.Title }}
+        <p *ngIf="item?.Label">
+          <ion-note>{{ item?.Label }}</ion-note>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item button detail="false" (click)="notFound()" *ngIf="searchInput">
+      <ion-label class="ion-text-center">
+        <ion-text color="primary">
+          <u>Not found? Click here</u>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

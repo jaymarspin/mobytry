@@ -1,0 +1,91 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="reset()">
+        {{ 'TasksFilter_Reset' | translate }}
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'TasksFilter_Filter' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-padding bg-white">
+    <ion-row class="ion-no-margin ion-no-padding">
+      <ion-col size="12">
+        <ion-label>
+          {{ 'TasksFilter_Status' | translate }}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-center ion-padding-top">
+      <ion-col class="header-btn" (click)="updateTaskStatus('all')" [class.activated]="filterObj.taskStatus === 'all'">
+        <ion-icon name="apps" [color]="filterObj.taskStatus === 'all' ? 'primary' : 'medium'"></ion-icon>
+
+        <ion-label class="mat-small">
+          {{ 'TasksFilter_All' | translate }}
+        </ion-label>
+      </ion-col>
+      <ion-col class="header-btn" (click)="updateTaskStatus('open')" [class.activated]="filterObj.taskStatus === 'open'">
+        <ion-icon src="{{ getOpenIcon() }}" [color]="filterObj.taskStatus === 'open' ? 'primary' : 'medium'"></ion-icon>
+
+        <ion-label class="mat-small">
+          {{ 'TasksFilter_Open' | translate }}
+        </ion-label>
+      </ion-col>
+      <ion-col class="header-btn" (click)="updateTaskStatus('completed')" [class.activated]="filterObj.taskStatus === 'completed'">
+        <ion-icon name="checkmark" [color]="filterObj.taskStatus === 'completed' ? 'primary' : 'medium'"></ion-icon>
+
+        <ion-label class="mat-small">
+          {{ 'TasksFilter_Completed' | translate }}
+        </ion-label>
+      </ion-col>
+      <ion-col class="header-btn" (click)="updateTaskStatus('aging')" [class.activated]="filterObj.taskStatus === 'aging'">
+        <ion-icon name="timer" [color]="filterObj.taskStatus === 'aging' ? 'primary' : 'medium'"></ion-icon>
+
+        <ion-label class="mat-small">
+          {{ 'TasksFilter_Aging' | translate }}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding ion-margin-top">
+      <ion-col class="ion-no-margin ion-no-padding">
+        <ion-grid class="ion-no-margin bg-white ion-no-padding">
+          <ion-row class="ion-no-margin ion-no-padding">
+            <ion-col size="6" class="ion-no-margin ion-no-padding">
+              <ion-label class="ion-no-margin ion-no-padding">
+                {{ 'TasksFilter_StartDate' | translate }}
+              </ion-label>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label>
+                {{ 'TasksFilter_EndDate' | translate }}
+              </ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-datetime [(ngModel)]="filterObj.startDate" displayFormat="MMM DD YYYY" min="{{ mindate }}" max="{{ maxdate }}"></ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-datetime [(ngModel)]="filterObj.endDate" displayFormat="MMM DD YYYY" min="{{ getEndDate() }}" max="{{ maxdate }}"></ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-padding">
+  <ion-button fill="solid" expand="block" color="primary" (click)="apply()">
+    {{ 'Common_Apply' | translate }}
+  </ion-button>
+</ion-footer>

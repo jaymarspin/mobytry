@@ -1,0 +1,62 @@
+h1,
+ion-text {
+  font-size: 96px;
+  line-height: 96px;
+}
+
+.moby-title {
+  margin-top: 200px;
+}
+
+ion-content {
+  --background: var(--ion-color-secondary-700);
+  --color: var(--ion-color-secondary-contrast);
+}
+
+svg {
+  display: block;
+  font-family: var(--ion-header-font-family);
+  font-size: 150px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.text-copy {
+  fill: none;
+  stroke: white;
+  stroke-dasharray: 6% 29%;
+  stroke-width: 5px;
+  stroke-dashoffset: 0%;
+  animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1) {
+  stroke: #263238;
+  animation-delay: -1s;
+}
+
+.text-copy:nth-child(2) {
+  stroke: #37474f;
+  animation-delay: -2s;
+}
+
+.text-copy:nth-child(3) {
+  stroke: #455a64;
+  animation-delay: -3s;
+}
+
+.text-copy:nth-child(4) {
+  stroke: #546e7a;
+  animation-delay: -4s;
+}
+
+.text-copy:nth-child(5) {
+  stroke: #b2ebf2;
+  animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+  100% {
+    stroke-dashoffset: -35%;
+  }
+}

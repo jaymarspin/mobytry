@@ -1,0 +1,17 @@
+{
+	"appId": "com.my.moby.motors.simedarby",
+	"appName": "Moby MY",
+	"bundledWebRuntime": false,
+	"webDir": "www",
+	"android": {
+		"path": "android/my-prod"
+	},
+	"ios": {
+		"path": "ios/my-prod"
+	},
+	"cordova": {
+		"preferences": {
+			"URL_SCHEME": "com.simedarbymotors.appauth:*"
+		}
+	}
+}

@@ -1,0 +1,46 @@
+<form [formGroup]="form">
+  <ion-item>
+    <ion-input formControlName="chassis" placeholder="{{ 'TradeInProfile_ChassisNo' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.chassis" [messages]="messages.chassis"></app-item-err>
+  <ion-item>
+    <ion-datetime displayFormat="MM/DD/YYYY" formControlName="regDate" placeholder="{{ 'TradeInProfile_RegistrationDate' | translate }}"></ion-datetime>
+  </ion-item>
+  <app-item-err [control]="form.controls?.regDate" [messages]="messages.regDate"></app-item-err>
+  <ion-item>
+    <ion-datetime displayFormat="YYYY" formControlName="yearMake" placeholder="{{ 'TradeInProfile_YearMake' | translate }}"></ion-datetime>
+  </ion-item>
+  <app-item-err [control]="form.controls?.yearMake" [messages]="messages.yearMake"></app-item-err>
+  <ion-item>
+    <ion-input formControlName="make" placeholder="{{ 'TradeInProfile_Make' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.make" [messages]="messages.make"></app-item-err>
+  <ion-item>
+    <ion-input formControlName="model" placeholder="{{ 'TradeInProfile_Model' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.model" [messages]="messages.model"></app-item-err>
+  <ion-item>
+    <ion-input formControlName="variant" placeholder="{{ 'TradeInProfile_Variant' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.variant" [messages]="messages.variant"></app-item-err>
+  <ion-item>
+    <ion-input formControlName="color" placeholder="{{ 'TradeInProfile_Color' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.color" [messages]="messages.color"></app-item-err>
+  <ion-item>
+    <ion-input formControlName="tradeInSource" placeholder="{{ 'TradeInProfile_TradeInSource' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.tradeInSource" [messages]="messages.tradeInSource"></app-item-err>
+  <ion-item>
+    <ion-input formControlName="expectedPrice" placeholder="{{ 'TradeInProfile_ExpectedPrice' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.expectedPrice" [messages]="messages.expectedPrice"></app-item-err>
+  <ion-item>
+    <ion-input formControlName="overtrade" placeholder="{{ 'TradeInProfile_Overtrade' | translate }}"></ion-input>
+  </ion-item>
+  <app-item-err [control]="form.controls?.overtrade" [messages]="messages.overtrade"></app-item-err>
+  <ion-item>
+    <ion-datetime displayFormat="YYYY" formControlName="warranty" placeholder="{{ 'TradeInProfile_WarrantyValidity' | translate }}"></ion-datetime>
+  </ion-item>
+  <app-item-err [control]="form.controls?.warranty" [messages]="messages.warranty"></app-item-err>
+</form>

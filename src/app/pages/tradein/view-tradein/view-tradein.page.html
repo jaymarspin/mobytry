@@ -1,0 +1,72 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{"TradeInViewDetailsPage_TradeIn"|translate}}<br />
+      <ion-text class="sub-header"> {{"TradeInViewDetailsPage_OpportunityID"|translate}}: {{tradein?.OpportunityId}} </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <section class="ion-text-center">
+    <ion-text>
+      <h2>{{tradein?.ContactName}}</h2>
+    </ion-text>
+    <ion-text class="sub-title">{{tradein?.SourceName}}</ion-text>
+  </section>
+  <!-- OWNER DETAILS -->
+  <section class="ion-margin-top">
+    <ion-text>
+      <b>{{"TradeInViewDetailsPage_OwnerDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin">
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"TradeInViewDetailsPage_IDNumber"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{tradein?.DocNum}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"TradeInViewDetailsPage_Mobile"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{tradein?.Mobile}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"TradeInViewDetailsPage_Email"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start"> {{tradein?.Email}} </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
+  <!-- VEHICLE DETAILS -->
+  <section class="ion-margin-top">
+    <ion-text>
+      <b>{{"TradeInViewDetailsPage_VehicleDetails"|translate}}</b>
+    </ion-text>
+    <div class="ion-margin-top">
+      <ion-grid class="ion-no-margin">
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"TradeInViewDetailsPage_RegistrationNo"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start" color="primary">
+            <ion-text color="primary"> {{tradein?.RegNo}} </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"TradeInViewDetailsPage_Purchaser"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start">
+            <ion-text color="primary"> {{tradein?.Purchaser}} </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-start"> {{"TradeInViewDetailsPage_Notes"|translate}}: </ion-col>
+          <ion-col size="6" class="ion-text-start">
+            <ion-text id="notes" color="primary" *ngIf="tradein?.Notes" [innerHTML]="noteTrimmer(tradein?.Notes)"></ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <app-vehicle-details-my [tradein]="tradein" *ngIf="countryCode == 'my'"></app-vehicle-details-my>
+    </div>
+  </section>
+</ion-content>

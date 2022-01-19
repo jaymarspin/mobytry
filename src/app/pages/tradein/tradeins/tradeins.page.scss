@@ -1,0 +1,37 @@
+ion-content {
+  --background: var(--ion-color-content-color);
+}
+
+.bg {
+  --background: var(--ion-color-content-color);
+}
+
+.sub-header {
+  font-size: 12px;
+}
+
+.add-icon {
+  font-size: 20px;
+  margin-right: 5px;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+
+.bottom-icon {
+  font-size: 20px;
+  display: block;
+}
+
+.border {
+  border: 3px #cacaca dashed;
+}
+
+ion-grid {
+  background: white;
+}
+.break-line {
+  float: left;
+  clear: both;
+  display: block;
+  width: 100%;
+}

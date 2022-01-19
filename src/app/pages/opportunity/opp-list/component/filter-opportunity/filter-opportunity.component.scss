@@ -1,0 +1,44 @@
+ion-content {
+  --background: var(--ion-color-content-color);
+}
+
+div,
+.bg-white {
+  background: white;
+}
+
+ion-item {
+  --padding-start: 0px;
+}
+
+ion-datetime,
+ion-select {
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+}
+
+.header-btn {
+  background: #eff8f8;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 10px;
+  text-align: center;
+  > div {
+    background: #eff8f8;
+  }
+  ion-icon {
+    display: block;
+    margin: auto;
+    clear: both;
+  }
+}
+
+.activated {
+  border: 1px solid var(--ion-color-primary);
+}
+
+ion-icon {
+  font-size: 25px;
+}

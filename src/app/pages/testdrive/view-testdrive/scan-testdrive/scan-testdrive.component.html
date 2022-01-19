@@ -1,0 +1,50 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{ 'ViewTestdrivePage_Testdrive' | translate }}<br />
+      <ion-text class="sub-header">
+        {{ 'TestdrivePage_OpportunityID' | translate }}:
+        {{ testdrive?.OpportunityId }}
+      </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <section class="ion-text-center ion-margin-bottom">
+    <ion-button fill="outline" expand="block" color="primary" class="ion-margin-bottom" (click)="qrScanner()">
+      {{ 'ViewTestdrivePage_Scan' | translate }}
+    </ion-button>
+    <ion-label class="ion-margin-top ion-margin-bottom">
+      <b>{{ 'ViewTestdrivePage_OR' | translate }}</b>
+    </ion-label>
+    <ion-button fill="outline" expand="block" color="primary" class="ion-margin-top" (click)="search()">
+      {{ 'ViewTestdrivePage_SearchRegistrationNo' | translate }}
+    </ion-button>
+  </section>
+  <section class="ion-margin-top">
+    <ng-container [formGroup]="tdForm">
+      <ion-item lines="none">
+        <ion-input [disabled]="true" formControlName="regNo" placeholder="{{ 'ViewTestdrivePage_RegistrationNumber' | translate }}"></ion-input>
+      </ion-item>
+      <app-item-err [control]="tdForm.controls?.regNo" [messages]="formErrorMessages.regNo"></app-item-err>
+      <ion-item lines="none" class="ion-margin-top">
+        <ion-input [disabled]="true" formControlName="variantName" placeholder=" {{ 'ViewTestdrivePage_VariantName' | translate }}"></ion-input>
+      </ion-item>
+      <app-item-err [control]="tdForm.controls?.variantName" [messages]="formErrorMessages.variantName"></app-item-err>
+      <ion-item lines="none" class="ion-margin-top">
+        <ion-input formControlName="mileageStart" placeholder=" {{ 'ViewTestdrivePage_MileageStart' | translate }}"></ion-input>
+      </ion-item>
+      <app-item-err [control]="tdForm.controls?.mileageStart" [messages]="formErrorMessages.mileageStart"></app-item-err>
+    </ng-container>
+  </section>
+</ion-content>
+<ion-footer class="ion-padding">
+  <ion-button fill="solid" expand="block" color="primary" [disabled]="tdForm.invalid" (click)="apply()">
+    {{ 'ViewTestdrivePage_Start' | translate }}
+  </ion-button>
+</ion-footer>

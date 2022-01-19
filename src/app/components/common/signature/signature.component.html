@@ -1,0 +1,25 @@
+<ion-grid no-padding>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ sigTitle }}</ion-card-title>
+          <ion-card-subtitle>Kindly sign within the box below</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <canvas></canvas>
+        </ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngIf="showClear" size="6">
+              <ion-button fill="solid" expand="block" color="light" (click)="clear()">CLEAR</ion-button>
+            </ion-col>
+            <ion-col *ngIf="showConfirm" size="6">
+              <ion-button expand="block" fill="solid" color="secondary" strong="true" (click)="sign()">CONFIRM </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

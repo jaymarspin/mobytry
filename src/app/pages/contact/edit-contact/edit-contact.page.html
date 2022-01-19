@@ -1,0 +1,172 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="done()">{{'Common_Done'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content scroll="true">
+  <form [formGroup]="contactForm">
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-select formControlName="title" placeholder='{{"EditContact_Salutation"|translate}}'>
+              <ion-select-option [value]="opt.value" *ngFor="let opt of salutationList">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.title" [messages]="formErrorMessages.title"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="fullName" placeholder='{{"EditContact_FullName"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.fullName" [messages]="formErrorMessages.fullName"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="prefName" placeholder='{{"EditContact_PreferredName"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.prefName" [messages]="formErrorMessages.prefName"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="company" placeholder='{{"EditContact_Company"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.company" [messages]="formErrorMessages.company"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-select formControlName="docType" placeholder='{{"EditContact_ID"|translate}}' (ionChange)="docTypeChanged()">
+              <ion-select-option [value]="opt.value" *ngFor="let opt of docList">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.docType" [messages]="formErrorMessages.docType"></app-item-err>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="docNum" placeholder='{{"EditContact_IDNumber"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.docNum" [messages]="formErrorMessages.docNum"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-select formControlName="race" placeholder='{{"EditContact_Race"|translate}}'>
+              <ion-select-option [value]="opt.value" *ngFor="let opt of raceList">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.race" [messages]="formErrorMessages.race"></app-item-err>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-select formControlName="gender" placeholder='{{"EditContact_Gender"|translate}}'>
+              <ion-select-option [value]="opt.value" *ngFor="let opt of genderList">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.gender" [messages]="formErrorMessages.gender"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-datetime displayFormat="MM/DD/YYYY" formControlName="birthday" placeholder='{{"EditContact_Birthday"|translate}}'></ion-datetime>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.birthday" [messages]="formErrorMessages.birthday"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" class="ion-no-padding ion-no-margin border-gap"></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-item>
+            <ion-select formControlName="countryCode" (ionChange)="setMobileValidator()">
+              <ion-select-option [value]="opt.value" *ngFor="let opt of countryCode">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.countryCode" [messages]="formErrorMessages.countryCode"></app-item-err>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="mobile" placeholder='{{"EditContact_MobileNumber"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.mobile" [messages]="formErrorMessages.mobile"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="email" placeholder='{{"EditContact_Email"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.email" [messages]="formErrorMessages.email"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="line1" placeholder='{{"EditContact_AddressLine1"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.line1" [messages]="formErrorMessages.line1"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="line2" placeholder='{{"EditContact_AddressLine2"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.line2" [messages]="formErrorMessages.line2"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input formControlName="postcode" placeholder='{{"EditContact_Postcode"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.postcode" [messages]="formErrorMessages.postcode"></app-item-err>
+        </ion-col>
+        <ion-col *ngIf="sysCountryCode == 'my'">
+          <ion-item>
+            <ion-select formControlName="city" placeholder='{{"EditContact_City"|translate}}'>
+              <ion-select-option [value]="opt.value" *ngFor="let opt of cityList"> {{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.city" [messages]="formErrorMessages.city"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="sysCountryCode == 'my'">
+        <ion-col>
+          <ion-item>
+            <ion-select formControlName="state" placeholder='{{"EditContact_State"|translate}}' readonly>
+              <ion-select-option [value]="opt.value" *ngFor="let opt of stateList"> {{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.state" [messages]="formErrorMessages.state"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-select formControlName="country" placeholder='{{"EditContact_Country"|translate}}' readonly>
+              <ion-select-option [value]="opt.value" *ngFor="let opt of countryList"> {{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="contactForm.controls?.country" [messages]="formErrorMessages.country"></app-item-err>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

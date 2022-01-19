@@ -1,0 +1,21 @@
+ion-grid {
+  --headerHeight: 44px;
+  --totalHeight: 60vh;
+  min-height: var(--totalHeight);
+}
+
+.transparent {
+  background: transparent;
+  background-clip: content-box;
+}
+
+ion-row.transparent {
+  height: calc(var(--totalHeight) / 2);
+}
+
+ion-row[justify-content-center] {
+  padding-bottom: 1em;
+  ion-fab-button {
+    margin: auto;
+  }
+}

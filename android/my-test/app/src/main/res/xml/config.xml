@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <access origin="*" />
+  
+  <feature name="SecureWebView">
+    <param name="android-package" value="com.ionicframework.auth.securewebview.SecureWebView"/>
+    <param name="onload" value="true"/>
+  </feature>
+  <feature name="IonicHttp">
+    <param name="android-package" value="com.ionicframework.auth.ionichttp.IonicHttp"/>
+  </feature>
+  <feature name="IonicAuthConnectStorage">
+    <param name="android-package" value="com.ionicframework.auth.ionicauthconnectstorage.IonicAuthConnectStorage"/>
+  </feature>
+
+  <feature name="IonicNativeAuth">
+    <param name="android-package" value="com.ionicframework.auth.IonicNativeAuth"/>
+    <param name="onload" value="true"/>
+  </feature>
+
+  <feature name="CordovaHttpPlugin">
+    <param name="android-package" value="com.silkimen.cordovahttp.CordovaHttpPlugin"/>
+  </feature>
+
+  <feature name="AppVersion">
+    <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion"/>
+  </feature>
+
+  <feature name="AppAuthCordova">
+    <param name="android-package" value="com.simedarbymotors.appauth.AppAuthCordova"/>
+  </feature>
+
+  <feature name="Contacts">
+    <param name="android-package" value="org.apache.cordova.contacts.ContactManager"/>
+  </feature>
+
+  <feature name="Device">
+    <param name="android-package" value="org.apache.cordova.device.Device"/>
+  </feature>
+
+  <feature name="File">
+    <param name="android-package" value="org.apache.cordova.file.FileUtils"/>
+    <param name="onload" value="true"/>
+  </feature>
+
+  <feature name="Fingerprint">
+    <param name="android-package" value="de.niklasmerz.cordova.biometric.Fingerprint"/>
+  </feature>
+
+  <feature name="QRScanner">
+    <param name="android-package" value="com.bitpay.cordova.qrscanner.QRScanner"/>
+  </feature>
+
+  <feature name="StatusBar">
+    <param name="android-package" value="org.apache.cordova.statusbar.StatusBar"/>
+    <param name="onload" value="true"/>
+  </feature>
+
+  
+  <preference name="URL_SCHEME" value="com.simedarbymotors.appauth:*" />
+</widget>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1006112861545",
+    "firebase_url": "https://moby-purchase-sg.firebaseio.com",
+    "project_id": "moby-purchase-sg",
+    "storage_bucket": "moby-purchase-sg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006112861545:android:8cdb52fe787c1226bce1f8",
+        "android_client_info": {
+          "package_name": "com.simedarbymotors.sg.moby.purchase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006112861545-ouk931kie4d17hjtso2h1v291svftgj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxOW8to-mjeQWFEKybthi0T0sT2b9ZCvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006112861545-ouk931kie4d17hjtso2h1v291svftgj1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1006112861545-ppgiprvf3cdqhiati838k02qreacfngf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.simedarbymotors.sg.moby.purchase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

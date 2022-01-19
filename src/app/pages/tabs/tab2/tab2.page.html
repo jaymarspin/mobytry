@@ -1,0 +1,97 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="end">
+      <ion-button (click)="add()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{"ContactsTab_Contacts"|translate}} </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      class="ion-margin-top"
+      search-icon=""
+      debounce="500"
+      [(ngModel)]="searchInput"
+      placeholder="{{'ContactsTab_Search'|translate}}"
+      (ionChange)="search($event.target.value)"
+      (ionCancel)="getRecentContacts()"
+      (ionClear)="getRecentContacts()"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="letter-scroll" *ngIf="countryCode == 'my'">
+    <div *ngFor="let item of letters; let i = index" (click)="getLetterClicked(item)">
+      <ion-label class="mat-small" color="primary"> {{item}} </ion-label>
+    </div>
+  </div>
+  <div>
+    <ion-list *ngIf="!searchInput && recentContacts">
+      <ion-item-group *ngIf="recentContacts?.length > 0">
+        <ion-item-divider color="primary-50">
+          <ion-label>
+            <b>{{"ContactsTab_RecentlyAdded"|translate}}</b>
+          </ion-label>
+        </ion-item-divider>
+        <ion-item-sliding *ngFor="let item of recentContacts">
+          <ion-item tappable (click)="viewContact(item)">
+            <ion-grid class="ion-no-padding ion-no-margin">
+              <ion-row class="row">
+                <ion-col class="ion-align-self-center" size="10">
+                  <ion-label color="primary" class="name"> {{ item?.Name }} </ion-label>
+                  <ion-note class="note">{{item?.CompanyName}}</ion-note>
+                </ion-col>
+                <ion-col size="2" class="ion-align-self-center">
+                  <ion-icon class="big-icon" name="{{ getFavIcon(item) }}" color="primary"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="edit(item)" color="tertiary">
+              <ion-icon slot="icon-only" name="create"></ion-icon>
+            </ion-item-option>
+            <ion-item-option (click)="delete(item)" color="danger">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-list>
+    <ion-list *ngIf="showContactList()">
+      <ion-item-group *ngFor="let item of contacts" id="{{item?.header}}">
+        <ion-item-divider color="primary-50">
+          <ion-label><b>{{item?.header}}</b></ion-label>
+        </ion-item-divider>
+        <ion-item-sliding *ngFor="let contact of item?.contacts">
+          <ion-item tappable (click)="viewContact(contact)">
+            <ion-grid class="ion-no-padding ion-no-margin">
+              <ion-row>
+                <ion-col class="ion-align-self-center ion-text-wrap" size="10">
+                  <ion-label color="primary" class="name"> {{ contact?.Name }} </ion-label>
+                  <ion-note class="note">{{contact?.CompanyName}}</ion-note>
+                </ion-col>
+                <ion-col size="2" class="ion-align-self-center">
+                  <ion-icon class="big-icon" name="{{ getFavIcon(contact) }}" color="primary"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="edit(item)" color="tertiary">
+              <ion-icon slot="icon-only" name="create"></ion-icon>
+            </ion-item-option>
+            <ion-item-option (click)="delete(item)" color="danger">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText='{{"ContactsTab_LoadingMoreContacts"|translate}}'></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

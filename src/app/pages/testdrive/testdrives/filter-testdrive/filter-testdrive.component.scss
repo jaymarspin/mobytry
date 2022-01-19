@@ -1,0 +1,24 @@
+.activated {
+  border: 1px solid var(--ion-color-primary);
+}
+
+.header-btn {
+  background: #eff8f8;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  > div {
+    background: #eff8f8;
+  }
+  ion-icon {
+    display: block;
+    margin: auto;
+    clear: both;
+  }
+}
+
+ion-icon {
+  font-size: 25px;
+}

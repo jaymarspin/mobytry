@@ -1,0 +1,17 @@
+{
+	"appId": "com.simedarbymotors.sg.moby.sales.dev",
+	"appName": "Moby SG TEST",
+	"bundledWebRuntime": false,
+	"webDir": "www",
+	"android": {
+		"path": "android/sg-test"
+	},
+	"ios": {
+		"path": "ios/sg-test"
+	},
+	"cordova": {
+		"preferences": {
+			"URL_SCHEME": "com.simedarbymotors.appauth://"
+		}
+	}
+}

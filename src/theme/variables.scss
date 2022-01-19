@@ -1,0 +1,184 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+@import "./font.scss";
+
+$header-typography: mat-typography-config(
+  $font-family: "Montserrat, Helvetica Neue, sans-serif",
+);
+
+$custom-typography: mat-typography-config(
+  $font-family: "Open Sans, Helvetica Neue, sans-serif",
+  $display-4: map-get($header-typography, display-4),
+  $display-3: map-get($header-typography, display-3),
+  $display-2: map-get($header-typography, display-2),
+  $display-1: map-get($header-typography, display-1),
+  $headline: map-get($header-typography, headline),
+  $title: map-get($header-typography, title),
+  $subheading-2: map-get($header-typography, subheading-2),
+  $subheading-1: map-get($header-typography, subheading-1),
+);
+
+@include mat-core($custom-typography);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$app-primary: mat-palette($mat-teal, 500);
+$app-secondary: mat-palette($mat-cyan);
+// The warn palette is optional (defaults to red).
+$app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-secondary, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+/** Ionic CSS Variables **/
+:root {
+  $baseColors: (
+    "primary": $app-primary,
+    "secondary": $app-secondary,
+  );
+  @each $colorName, $appColor in $baseColors {
+    $main-color: mat-color($appColor, default);
+    $contrast-color: mat-color($appColor, default-contrast);
+    --ion-color-#{$colorName}: #{$main-color};
+    --ion-color-#{$colorName}-rgb: #{red($main-color)}, #{green($main-color)},
+      #{blue($main-color)};
+    --ion-color-#{$colorName}-contrast: #{$contrast-color};
+    --ion-color-#{$colorName}-contrast-rgb: #{red($contrast-color)},
+      #{green($contrast-color)}, #{blue($contrast-color)};
+    --ion-color-#{$colorName}-shade: #{mat-color($appColor, darker)};
+    --ion-color-#{$colorName}-tint: #{mat-color($appColor, lighter)};
+  }
+
+  $colorShades: (50, 100, 200, 300, 400, 600, 700, 800, 900);
+  @each $colorName, $appColor in $baseColors {
+    @each $shade in $colorShades {
+      $name: #{$colorName}-#{$shade};
+      $contrast-name: #{$shade}-contrast;
+      $main-color: mat-color($appColor, $shade);
+      $contrast-color: mat-color($appColor, $contrast-name);
+      --ion-color-#{$name}: #{$main-color};
+      --ion-color-#{$name}-rgb: #{red($main-color)}, #{green($main-color)},
+        #{blue($main-color)};
+      --ion-color-#{$name}-contrast: #{$contrast-color};
+      --ion-color-#{$name}-contrast-rgb: #{red($contrast-color)},
+        #{green($contrast-color)}, #{blue($contrast-color)};
+      --ion-color-#{$name}-shade: #{darken($main-color, 10%)};
+      --ion-color-#{$name}-tint: #{lighten($main-color, 10%)};
+      .ion-color-#{$name} {
+        --ion-color-base: var(--ion-color-#{$name});
+        --ion-color-base-rgb: var(--ion-color-#{$name}-rgb);
+        --ion-color-contrast: var(--ion-color-#{$name}-contrast);
+        --ion-color-contrast-rgb: var(--ion-color-#{$name}-contrast-rgb);
+        --ion-color-shade: var(--ion-color-#{$name}-shade);
+        --ion-color-tint: var(--ion-color-#{$name}-tint);
+      }
+    }
+  }
+
+  /** secondary **/
+  --ion-color-secondary: #00acc1;
+  --ion-color-secondary-rgb: 0, 172, 193;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #36abe0;
+  --ion-color-secondary-tint: #50c8ff;
+
+  /** tertiary **/
+  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary-rgb: 82, 96, 255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #4854e0;
+  --ion-color-tertiary-tint: #6370ff;
+
+  /** orange **/
+  --ion-color-orange: #ff7a5a;
+  --ion-color-orange-rgb: 82, 96, 255;
+  --ion-color-orange-contrast: #ffffff;
+  --ion-color-orange-contrast-rgb: 255, 255, 255;
+  --ion-color-orange-shade: #ff7a5a;
+  --ion-color-orange-tint: #ff7a5a;
+
+  /** success **/
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  /** warning **/
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  /** danger **/
+  --ion-color-danger: #eb445a;
+  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #cf3c4f;
+  --ion-color-danger-tint: #ed576b;
+
+  /** dark **/
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 36, 40;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  /** medium **/
+  --ion-color-medium: #92949c;
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  /** light **/
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 245, 248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+
+  /** Content-Color **/
+  --ion-color-content-color: #eceff1;
+  --ion-color-content-color-rgb: 146, 148, 156;
+  --ion-color-content-color-contrast: #ffffff;
+  --ion-color-content-color-contrast-rgb: 255, 255, 255;
+  --ion-color-content-color-shade: #eceff1;
+  --ion-color-content-color-tint: #eceff1;
+
+  --ion-font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  --ion-header-font-family: "Montserrat", "Helvetica Neue", sans-serif;
+}
+
+$customColors: ("orange, content-color");
+@each $color in $customColors {
+  .ion-color-#{$color} {
+    --ion-color-base: var(--ion-color-#{$color}) !important;
+    --ion-color-base-rgb: var(--ion-color-#{$color}-rgb) !important;
+    --ion-color-contrast: var(--ion-color-#{$color}-contrast) !important;
+    --ion-color-contrast-rgb: var(
+      --ion-color-#{$color}-contrast-rgb
+    ) !important;
+    --ion-color-shade: var(--ion-color-#{$color}-shade) !important;
+    --ion-color-tint: var(--ion-color-#{$color}-tint) !important;
+  }
+}

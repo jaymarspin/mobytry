@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="end">
+      <ion-button (click)="showFilter()">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"OpportunityTab_Opportunity"|translate}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      class="ion-margin-top"
+      search-icon=""
+      debounce="500"
+      [(ngModel)]="searchInput"
+      placeholder="{{'OpportunityTab_Search'|translate}}"
+      (ionChange)="search()"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="ion-margin border-radius" *ngFor="let item of opp">
+    <ion-grid class="ion-no-margin">
+      <ion-row>
+        <ion-col>
+          <div class="ion-margin-bottom">
+            <ion-label color="primary"><b>{{ item?.Type }}</b></ion-label
+            ><br />
+            <ion-label color="primary">{{ item?.ContactName }}</ion-label>
+          </div>
+          <div class="bottom-icon">
+            <ion-icon name="flame" color="{{ getColor(item?.Warmth) }}" *ngIf="item?.Type === 'OPEN'"></ion-icon>
+            <ion-icon class="big-icon" name="{{ getFavIcon(item) }}" color="primary"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col class="ion-text-start">
+          <div *ngFor="let model of item?.ModelInterest">
+            <ion-label> {{ model?.label }} </ion-label>
+            <br />
+          </div>
+          <ion-label>{{ item?.Source }}</ion-label><br />
+          <ion-label> {{ item?.CreatedDate | date: "dd MMM y h:mm a" }} </ion-label>
+          <br />
+          <ion-label>
+            <a (click)="goToOpportunity(item)"> {{"OpportunityTab_ViewDetails"|translate}} </a>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

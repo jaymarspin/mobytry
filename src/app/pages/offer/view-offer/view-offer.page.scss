@@ -1,0 +1,20 @@
+.sub-header {
+  font-size: 12px;
+}
+
+ion-content,
+ion-input {
+  --background: var(--ion-color-content-color);
+}
+
+ion-footer {
+  background: var(--ion-color-content-color);
+}
+
+div {
+  background: white;
+}
+
+.sub-title {
+  color: #90a4ae;
+}

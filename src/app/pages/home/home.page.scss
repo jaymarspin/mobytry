@@ -1,0 +1,30 @@
+ion-avatar {
+  margin: auto;
+  width: 45px;
+  height: 45px;
+}
+
+.profile {
+  margin: auto;
+  width: 60px;
+  height: 60px;
+}
+
+.center {
+  display: block;
+  margin: auto;
+  position: relative;
+}
+
+.card-img {
+  height: 160px;
+  width: 100%;
+}
+.border-bottom {
+  border-bottom: 1px solid #dedde0;
+}
+.mat-small {
+  position: relative;
+  float: left;
+  clear: both;
+}

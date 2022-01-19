@@ -1,0 +1,43 @@
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <ion-label>
+      <h3>{{ 'ViewContactPage_AddFile' | translate }}</h3>
+    </ion-label>
+  </div>
+  <ion-grid class="ion-no-margin ion-no-padding ion-margin-top">
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-select placeholder="{{ 'ViewContactPage_SelectFileType' | translate }}">
+            <ion-select-option [value]="opt.value" *ngFor="let opt of documentTypes">
+              {{ opt.label }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="ion-margin-top">
+          <ion-input placeholder="{{ 'ViewContactPage_FileName' | translate }}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-grid class="ion-no-margin ion-no-padding">
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" class="ion-no-padding ion-no-margin" (click)="dismiss()">
+          {{ 'Common_Cancel' | translate }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" class="ion-no-padding ion-no-margin">
+          {{ 'Common_OK' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

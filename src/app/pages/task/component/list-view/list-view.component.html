@@ -1,0 +1,34 @@
+<div class="border ion-margin-start ion-margin-bottom ion-margin-end ion-padding ion-text-center" (click)="add()">
+  <ion-icon name="add-circle" color="primary" class="add-icon"></ion-icon>
+  <ion-label color="primary">
+    {{ 'TasksPage_NewTask' | translate }}
+  </ion-label>
+</div>
+<ng-container *ngFor="let item of tasks">
+  <ion-label class="ion-margin-start">
+    <b>{{ item?.header }}</b>
+  </ion-label>
+  <div class="ion-margin-top">
+    <ion-list>
+      <ion-item class="ion-text-wrap" *ngFor="let t of item?.events">
+        <ion-checkbox slot="start" [(ngModel)]="t.isComplete" (ionChange)="setStatus(t)"></ion-checkbox>
+        <ion-label (click)="edit(t)">
+          <h3>{{ t?.TaskName }}</h3>
+          <ul>
+            <li *ngIf="t?.ContactName">
+              <p>
+                {{ t?.ContactName }}
+              </p>
+            </li>
+            <li *ngIf="t?.Notes">
+              <p>{{ t?.Notes }}</p>
+            </li>
+          </ul>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ng-container>
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{ 'TasksPage_LoadingMoreTasks' | translate }}"></ion-infinite-scroll-content>
+</ion-infinite-scroll>

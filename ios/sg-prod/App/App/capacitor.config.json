@@ -1,0 +1,17 @@
+{
+	"appId": "com.simedarbymotors.sg.moby.sales",
+	"appName": "Moby SG",
+	"bundledWebRuntime": false,
+	"webDir": "www",
+	"android": {
+		"path": "android/sg-prod"
+	},
+	"ios": {
+		"path": "ios/sg-prod"
+	},
+	"cordova": {
+		"preferences": {
+			"URL_SCHEME": "com.simedarbymotors.appauth://"
+		}
+	}
+}

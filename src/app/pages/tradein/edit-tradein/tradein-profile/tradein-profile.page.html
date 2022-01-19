@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Cancel'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="done()">{{'Common_Done'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{'TradeInProfile_NewTradeIn'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="tradeinForm">
+    <ion-item>
+      <ion-input formControlName="regNo" placeholder='{{"TradeInProfile_RegistrationNo"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="tradeinForm.controls?.regNo" [messages]="formErrorMessages.regNo"></app-item-err>
+    <ion-item>
+      <ion-input formControlName="purchaser" placeholder='{{"TradeInProfile_Purchaser"|translate}}' (click)="selectPurchaser()"></ion-input>
+    </ion-item>
+    <app-item-err [control]="tradeinForm.controls?.purchaser" [messages]="formErrorMessages.purchaser"></app-item-err>
+    <ion-item>
+      <ion-input formControlName="mileage" placeholder='{{"TradeInProfile_Mileage"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="tradeinForm.controls?.mileage" [messages]="formErrorMessages.mileage"></app-item-err>
+    <app-tradein-form-my
+      [form]="tradeinForm"
+      [tradein]="tradein"
+      [messages]="formErrorMessages"
+      (tdChange)="setTradein($event)"
+      *ngIf="countryCode == 'my'"
+    ></app-tradein-form-my>
+    <ion-item>
+      <ion-textarea rows="6" formControlName="remarks" placeholder='{{"TradeInProfile_Notes"|translate}}'></ion-textarea>
+    </ion-item>
+    <app-item-err [control]="tradeinForm.controls?.remarks" [messages]="formErrorMessages.remarks"></app-item-err>
+  </form>
+</ion-content>

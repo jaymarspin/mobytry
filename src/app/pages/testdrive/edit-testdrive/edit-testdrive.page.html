@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="done()">{{'Common_Done'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="tdForm">
+    <ion-item>
+      <ion-input formControlName="name" placeholder='{{"EditTestdrive_Name"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.name" [messages]="formErrorMessages.name"></app-item-err>
+    <ion-item>
+      <ion-select formControlName="docType" placeholder='{{"EditContact_ID"|translate}}' size="12">
+        <ion-select-option [value]="opt.value" *ngFor="let opt of docList">{{ opt.label }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.docType" [messages]="formErrorMessages.docType"></app-item-err>
+    <ion-item>
+      <ion-input formControlName="docNum" placeholder='{{"EditTestdrive_DocumentNumber"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.docNum" [messages]="formErrorMessages.docNum"></app-item-err>
+    <ion-item>
+      <ion-datetime formControlName="birthday" displayFormat="DD MMM YYYY" placeholder='{{"EditTestdrive_Birthday"|translate}}'></ion-datetime>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.birthday" [messages]="formErrorMessages.birthday"></app-item-err>
+    <ion-item>
+      <ion-input formControlName="gender" placeholder='{{"EditTestdrive_Gender"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.gender" [messages]="formErrorMessages.gender"></app-item-err>
+    <ion-item lines="none">
+      <ion-input formControlName="modelInterest" placeholder="Model Interest" (ionFocus)="showModelInterestComp()" class="w100"></ion-input>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.modelInterest" [messages]="formErrorMessages.modelInterest"></app-item-err>
+    <ion-item *ngIf="countryCode == 'my'">
+      <ion-input formControlName="drivingLicense" placeholder='{{"EditTestdrive_DrivingLicense"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.drivingLicense" [messages]="formErrorMessages.drivingLicense"></app-item-err>
+    <ion-item *ngIf="countryCode == 'my'">
+      <ion-datetime
+        displayFormat="DD-MM-YYYY"
+        formControlName="expDate"
+        max="{{maxdate}}"
+        placeholder='{{"EditTestdrive_ExpiryDate"|translate}}'
+      ></ion-datetime>
+    </ion-item>
+    <app-item-err *ngIf="countryCode == 'my'" [control]="tdForm.controls?.expDate" [messages]="formErrorMessages.expDate"></app-item-err>
+    <app-tdform-sg
+      [form]="tdForm"
+      [testdrive]="testdrive"
+      [messages]="formErrorMessages"
+      (tdChange)="setTestdrive($event)"
+      *ngIf="countryCode == 'my'"
+    ></app-tdform-sg>
+    <ion-item *ngIf="countryCode == 'my'">
+      <ion-datetime
+        displayFormat="DD MMM YYYY hh:mm A"
+        formControlName="plannedStartDate"
+        max="{{maxdate}}"
+        placeholder='{{"EditTestdrive_PlannedStartDate"|translate}}'
+      ></ion-datetime>
+    </ion-item>
+    <app-item-err [control]="tdForm.controls?.plannedStartDate" [messages]="formErrorMessages.plannedStartDate"></app-item-err>
+  </form>
+</ion-content>

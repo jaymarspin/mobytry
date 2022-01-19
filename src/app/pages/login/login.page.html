@@ -1,0 +1,57 @@
+<ion-content fullscreen="true" class="ion-padding" scrollY="false" class="login">
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-align-items-center ion-justify-content-center login-title">
+      <ion-col class="ion-text-center ion-margin-top">
+        <ion-text>
+          <ion-text class="mat-display-3">MOBY</ion-text>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-text-center ion-text-uppercase">
+        <ion-text color="primary">
+          <h2>Your Mobile Buddy</h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-text-center">
+        <img src="../../../assets/images/login/login.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-center login-button">
+      <ion-col class="ion-text-center" *ngIf="(authState$ | async); let state">
+        <ion-grid class="ion-no-padding" *ngIf="!state.isLoggingIn && !state.hasSavedToken">
+          <ion-row class="ion-align-items-center">
+            <ion-col class="loginBtn">
+              <ion-button class="ion-margin-start ion-margin-end" expand="block" fill="solid" color="secondary" (click)="login()">LOGIN</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="ion-no-padding" *ngIf="!state.isLoggingIn && state.hasSavedToken && !state.loginSuccess">
+          <ion-row class="ion-justify-content-center ion-align-item-center">
+            <ion-col class="ion-text-center ion-no-padding" (click)="authBiometric()">
+              <ion-icon name="finger-print" class="fingerprint"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="ion-no-padding" *ngIf="state.isLoggingIn">
+          <ion-row class="ion-justify-content-center ion-align-item-center">
+            <ion-col class="ion-text-center ion-no-padding">
+              <ion-spinner color="secondary"></ion-spinner>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="ion-no-padding" *ngIf="!state.isLoggingIn && state.loginSuccess">
+          <ion-row class="ion-justify-content-center ion-align-item-center">
+            <ion-col class="ion-text-center ion-no-padding">
+              <ion-text color="primary">
+                <h2>WELCOME</h2>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

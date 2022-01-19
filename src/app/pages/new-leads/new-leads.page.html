@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"NewLeadsPage_NewLeads"|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-contact-search [form]="form" [messages]="formErrorMessages" [oppId]="oppId"></app-contact-search>
+</ion-content>

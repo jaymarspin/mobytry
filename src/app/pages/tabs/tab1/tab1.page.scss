@@ -1,0 +1,27 @@
+ion-avatar {
+  margin: auto;
+  width: 45px;
+  height: 45px;
+}
+
+.profile {
+  margin: auto;
+  width: 60px;
+  height: 60px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #dedde0;
+}
+
+.card-img {
+  height: 160px;
+  width: 100%;
+}

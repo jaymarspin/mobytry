@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="done()" [disabled]="eventForm.invalid">{{'Common_Done'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="eventForm">
+    <ion-item>
+      <ion-input formControlName="taskName" placeholder='{{"TasksPage_EditEvent"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="eventForm.controls?.taskName" [messages]="formErrorMessages.taskName"></app-item-err>
+    <!-- <ion-item>
+      <ion-select formControlName="status" placeholder='{{"EditTaskPage_Status"|translate}}'>
+        <ion-select-option [value]="opt.value" *ngFor="let opt of status"> {{ opt.label }} </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <app-item-err [control]="eventForm.controls?.status" [messages]="formErrorMessages.status"></app-item-err> -->
+    <ion-item>
+      <ion-input formControlName="contact" placeholder='{{"EditTaskPage_Contacts"|translate}}' (click)="selectContact()"></ion-input>
+    </ion-item>
+    <app-item-err [control]="eventForm.controls?.contact" [messages]="formErrorMessages.contact"></app-item-err>
+    <ion-grid class="ion-no-margin ion-no-padding">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-datetime
+              formControlName="startDate"
+              displayFormat="DD MMM YYYY HH:mm"
+              placeholder='{{"EditTaskPage_StartDate"|translate}}'
+              min="{{ mindate }}"
+              max="{{ maxdate }}"
+            >
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+        <!-- <ion-col size="6">
+          <ion-item lines="none">
+            <ion-datetime
+              formControlName="startTime"
+              displayFormat="HH:mm"
+              placeholder='{{"EditTaskPage_StartTime"|translate}}'
+              max="{{ maxdate }}"
+            ></ion-datetime>
+          </ion-item>
+        </ion-col> -->
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <app-item-err [control]="eventForm.controls?.startDate" [messages]="formErrorMessages.startDate"></app-item-err>
+        </ion-col>
+        <!-- <ion-col size="6">
+          <app-item-err [control]="eventForm.controls?.startTime" [messages]="formErrorMessages.startTime"></app-item-err>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label>{{"EditTaskPage_AllDay"|translate}}</ion-label>
+      <ion-checkbox slot="end" formControlName="allDay"></ion-checkbox>
+    </ion-item>
+    <app-item-err [control]="eventForm.controls?.allDay" [messages]="formErrorMessages.allDay"></app-item-err>
+    <ion-grid class="ion-no-margin ion-no-padding">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-datetime
+              formControlName="endDate"
+              displayFormat="DD MMM YYYY HH:mm"
+              placeholder='{{"EditTaskPage_EndDate"|translate}}'
+              min="{{ getEndDate() }}"
+              max="{{ maxdate }}"
+            >
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+        <!-- <ion-col size="6">
+          <ion-item lines="none">
+            <ion-datetime formControlName="endTime" displayFormat="HH:mm" placeholder='{{"EditTaskPage_EndTime"|translate}}' max="{{ maxdate }}"></ion-datetime>
+          </ion-item>
+        </ion-col> -->
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <app-item-err [control]="eventForm.controls?.endDate" [messages]="formErrorMessages.endDate"></app-item-err>
+        </ion-col>
+        <!-- <ion-col size="6">
+          <app-item-err [control]="eventForm.controls?.endTime" [messages]="formErrorMessages.endTime"></app-item-err>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+    <!-- <ion-item>
+      <ion-select formControlName="alert" placeholder='{{"EditTaskPage_Alert"|translate}}'>
+        <ion-select-option [value]="opt.value" *ngFor="let opt of alert"> {{ opt.label }} </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <app-item-err [control]="eventForm.controls?.alert" [messages]="formErrorMessages.alert"></app-item-err> -->
+
+    <ion-item class="ion-margin-top">
+      <ion-textarea rows="6" formControlName="notes" placeholder='{{"EditTaskPage_Notes"|translate}}'></ion-textarea>
+    </ion-item>
+    <app-item-err [control]="eventForm.controls?.notes" [messages]="formErrorMessages.notes"></app-item-err>
+  </form>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="done()" [disabled]="taskForm.invalid">{{'Common_Done'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="taskForm">
+    <ion-item>
+      <ion-input formControlName="taskName" placeholder='{{"EditTaskPage_TaskName"|translate}}'></ion-input>
+    </ion-item>
+    <app-item-err [control]="taskForm.controls?.taskName" [messages]="formErrorMessages.taskName"></app-item-err>
+    <ion-item>
+      <ion-select formControlName="status" placeholder='{{"EditTaskPage_Status"|translate}}'>
+        <ion-select-option [value]="opt.value" *ngFor="let opt of status"> {{ opt.label }} </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <app-item-err [control]="taskForm.controls?.status" [messages]="formErrorMessages.status"></app-item-err>
+    <ion-item>
+      <ion-input formControlName="contact" placeholder='{{"EditTaskPage_Contacts"|translate}}' (click)="selectContact()"></ion-input>
+    </ion-item>
+    <app-item-err [control]="taskForm.controls?.contact" [messages]="formErrorMessages.contact"></app-item-err>
+    <ion-item>
+      <ion-datetime
+        formControlName="dueDate"
+        displayFormat="DD MMM YYYY"
+        placeholder='{{"EditTaskPage_EndDate"|translate}}'
+        min="{{ mindate }}"
+        max="{{ maxdate }}"
+      >
+      </ion-datetime>
+    </ion-item>
+    <app-item-err [control]="taskForm.controls?.dueDate" [messages]="formErrorMessages.dueDate"></app-item-err>
+    <!-- <ion-item>
+        <ion-select formControlName="alert" placeholder='{{"EditTaskPage_Alert"|translate}}'>
+          <ion-select-option [value]="opt.value" *ngFor="let opt of alert"> {{ opt.label }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-item-err [control]="taskForm.controls?.alert" [messages]="formErrorMessages.alert"></app-item-err> -->
+    <ng-container *ngIf="showLeadField || showTDField">
+      <ion-item lines="none">
+        <ion-textarea formControlName="custAct" autoGrow="true" placeholder='{{"EditTaskPage_CustAct"|translate}}'></ion-textarea>
+      </ion-item>
+      <ion-item class="ion-no-margin ion-no-padding ion-text-end">
+        <ion-note>Character count: {{taskForm.get('custAct').value?.length}}</ion-note>
+      </ion-item>
+      <app-item-err [control]="taskForm.controls?.custAct" [messages]="formErrorMessages.custAct"></app-item-err>
+
+      <ion-item *ngIf="showLeadField" lines="none">
+        <ion-textarea formControlName="custInfo" autoGrow="true" placeholder='{{"EditTaskPage_CustInfo"|translate}}'></ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="showLeadField" class="ion-no-margin ion-no-padding ion-text-end">
+        <ion-note>Character count: {{taskForm.get('custInfo').value?.length}}</ion-note>
+      </ion-item>
+      <app-item-err *ngIf="showLeadField" [control]="taskForm.controls?.custInfo" [messages]="formErrorMessages.custInfo"></app-item-err>
+
+      <ion-item *ngIf="showTDField" lines="none">
+        <ion-textarea formControlName="custFeel" autoGrow="true" placeholder='{{"EditTaskPage_CustFeel"|translate}}'></ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="showTDField" class="ion-no-margin ion-no-padding ion-text-end">
+        <ion-note>Character count: {{taskForm.get('custFeel').value?.length}}</ion-note>
+      </ion-item>
+      <app-item-err *ngIf="showTDField" [control]="taskForm.controls?.custFeel" [messages]="formErrorMessages.custFeel"></app-item-err>
+    </ng-container>
+    <ion-item>
+      <ion-textarea rows="6" formControlName="notes" placeholder='{{"EditTaskPage_Notes"|translate}}'></ion-textarea>
+    </ion-item>
+    <app-item-err [control]="taskForm.controls?.notes" [messages]="formErrorMessages.notes"></app-item-err>
+  </form>
+</ion-content>

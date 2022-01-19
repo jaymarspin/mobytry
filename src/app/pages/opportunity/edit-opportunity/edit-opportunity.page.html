@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" text="{{'Common_Back'|translate}}"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="done()">{{'Common_Done'|translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="oppForm">
+    <ion-grid class="ion-no-margin ion-no-padding">
+      <ion-row class="ion-no-margin ion-no-padding">
+        <ion-col size="12" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-input formControlName="name" placeholder='{{"EditOpportunityPage_Name"|translate}}'></ion-input>
+          </ion-item>
+          <app-item-err [control]="oppForm.controls?.name" [messages]="formErrorMessages.name"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-no-margin ion-no-padding">
+        <ion-col size="12" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-select formControlName="company" placeholder='{{"EditOpportunityPage_Company"|translate}}' (ionChange)="loadCompanyDependentApi()">
+              <ion-select-option [value]="opt.value" *ngFor="let opt of companyList">{{ opt.label }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-item-err [control]="oppForm.controls?.company" [messages]="formErrorMessages.company"></app-item-err>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin-top" *ngIf="oppForm.get('company').value">
+        <ion-col size="12" class="ion-margin-bottom ion-margin-top">
+          <ion-grid class="ion-no-padding ion-no-margin">
+            <ion-row class="ion-no-padding ion-no-margin">
+              <ion-col size="12" class="ion-no-padding ion-no-margin">
+                <ion-item *ngIf="countryCode === 'my'">
+                  <ion-select formControlName="vehType" placeholder='{{"EditOpportunityPage_VehicleType"|translate}}'>
+                    <ion-select-option [value]="opt.value" *ngFor="let opt of vehicleType">{{ opt.label }} </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <app-item-err *ngIf="countryCode === 'my'" [control]="oppForm.controls?.vehType" [messages]="formErrorMessages.vehType"></app-item-err>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-no-padding ion-no-margin">
+              <ion-col size="12" class="ion-no-padding ion-no-margin">
+                <ion-item>
+                  <ion-select
+                    interface="action-sheet"
+                    formControlName="source"
+                    (ionChange)="changeCmpgSource($event)"
+                    [compareWith]="compareId"
+                    placeholder='{{"OpportunityDetails_Source"|translate}}'
+                  >
+                    <ion-select-option [value]="opt" *ngFor="let opt of cmpgList"> {{ opt.Name }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <app-item-err [control]="oppForm.controls?.source" [messages]="formErrorMessages.source"></app-item-err>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-no-padding ion-no-margin">
+              <ion-col size="12" class="ion-no-padding ion-no-margin">
+                <ion-item>
+                  <ion-select multiple="true" formControlName="channel" placeholder='{{"OpportunityDetails_Channel"|translate}}'>
+                    <ion-select-option [value]="opt" *ngFor="let opt of chnlList"> {{ opt }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <app-item-err [control]="oppForm.controls?.channel" [messages]="formErrorMessages.channel"></app-item-err>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-no-padding ion-no-margin">
+              <ion-col size="12" class="ion-no-padding ion-no-margin">
+                <ion-item>
+                  <ion-select interface="action-sheet" formControlName="PPDRange" placeholder='{{"OpportunityDetails_PPDRange"|translate}}'>
+                    <ion-select-option [value]="opt.value" *ngFor="let opt of ppDateRange"> {{ opt.label }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <app-item-err [control]="oppForm.controls?.PPDRange" [messages]="formErrorMessages.PPDRange"></app-item-err>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-no-padding ion-no-margin">
+              <ion-col size="12" class="ion-no-padding ion-no-margin">
+                <ion-item *ngIf="oppForm.get('PPDRange').value == customPPDate">
+                  <ion-datetime
+                    displayFormat="DD MMM YYYY"
+                    [min]="ppDateMin"
+                    [max]="ppDateMax"
+                    formControlName="PPD"
+                    placeholder='{{"OpportunityDetails_PPDDate"|translate}}'
+                  >
+                  </ion-datetime>
+                </ion-item>
+                <app-item-err [control]="oppForm.controls?.PPD" [messages]="formErrorMessages.PPD"></app-item-err>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-no-padding ion-no-margin">
+              <ion-col size="12" class="ion-no-padding ion-no-margin">
+                <ion-item lines="none">
+                  <ion-input formControlName="modelInterest" placeholder="Model Interest" (ionFocus)="showModelInterestComp()" class="w100"></ion-input>
+                </ion-item>
+                <app-item-err [control]="oppForm.controls?.modelInterest" [messages]="formErrorMessages.modelInterest"></app-item-err>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col></ion-col>
+      </ion-row>
+      <!-- <ion-row class="ion-no-margin ion-no-padding ion-margin-top" *ngIf="oppForm.get('company').value">
+        <ion-col size="12" class="ion-no-margin ion-no-padding">
+
+          <ion-item>
+            <ion-textarea rows="6" formControlName="notes" placeholder='{{"EditContact_Notes"|translate}}'>
+            </ion-textarea>
+          </ion-item>
+          <app-item-err [control]="oppForm.controls?.notes" [messages]="formErrorMessages.notes"></app-item-err>
+
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+  </form>
+</ion-content>

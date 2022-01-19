@@ -1,0 +1,27 @@
+<ion-grid>
+  <ion-row class="border ion-margin-top ion-padding ion-margin ion-text-center bg-white" (click)="addOpp()">
+    <ion-col size="12">
+      <ion-icon name="add-circle" color="primary" class="add-icon"></ion-icon>
+      <ion-label color="primary">
+        {{ 'ViewContactPage_AddOpportunity' | translate }}
+      </ion-label>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-margin ion-padding border-radius bg-white" *ngFor="let item of opp" (click)="viewOpp(item.Id)">
+    <ion-col>
+      <ion-label color="primary" class="clear-parameters">
+        <b>{{ item?.Type }}</b>
+      </ion-label>
+      <ion-label>{{ item?.Stage }}</ion-label>
+      <ion-icon name="flame" color="{{ getColor(item?.Warmth) }}" *ngIf="item?.Type === 'OPEN' && countryCode == 'my'" class="bottom-icon"></ion-icon>
+      <ion-icon name="{{ getFavIcon(item) }}" color="primary" *ngIf="countryCode == 'my'"></ion-icon>
+    </ion-col>
+    <ion-col class="ion-text-end">
+      <ng-container *ngFor="let model of item?.ModelInterest">
+        <ion-label class="clear-parameters"> {{ model }} </ion-label>
+      </ng-container>
+      <ion-label>{{ 'ViewContactPage_CreatedOn' | translate }}{{ item?.CreatedDate | date: 'dd MMM y':'+0800' }} </ion-label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
